@@ -1,0 +1,154 @@
+.clients-swiper {
+  position: absolute;
+  z-index: 4;
+  top: 53%;
+  left: 50%;
+  width: min(960px, 76vw);
+  height: min(420px, 55vh);
+  overflow: visible;
+  transform: translate(-50%, -43%);
+}
+
+.clients-swiper .swiper-wrapper,
+.clients-swiper .client-page {
+  height: 100%;
+}
+
+.clients-swiper .client-page {
+  width: 100%;
+  background: transparent;
+}
+
+.clients-swiper .client-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  height: 100%;
+  gap: 18px;
+}
+
+.clients-swiper .client-grid a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 42px 20px;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(204, 216, 228, .22);
+  border-radius: 36px;
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(74, 123, 160, .20), transparent 43%),
+    linear-gradient(145deg, #172c38, #161b2b 58%, #111827);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .07);
+  transition: transform .3s ease, border-color .3s ease, background .3s ease;
+}
+
+.clients-swiper .client-grid a:hover {
+  transform: translateY(-5px);
+  border-color: rgba(204, 216, 228, .42);
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(86, 141, 194, .30), transparent 43%),
+    linear-gradient(145deg, #1b3240, #191e31 58%, #121a29);
+}
+
+.clients-swiper .client-grid a::before {
+  content: "";
+  width: 116px;
+  height: 116px;
+  margin-bottom: 38px;
+  border-radius: 25px;
+  background-color: rgba(83, 99, 119, .46);
+  background-image:
+    linear-gradient(#fff 0 0), linear-gradient(#fff 0 0), linear-gradient(#fff 0 0),
+    linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  background-repeat: no-repeat;
+  background-size: 27px 25px, 27px 25px, 27px 25px, 52px 25px, 35px 25px;
+  background-position: 28px 39px, 59px 39px, 90px 39px, 28px 68px, 80px 68px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.clients-swiper .client-grid span {
+  color: #f5f2eb;
+  font-family: "Bodoni Moda", "Times New Roman", serif;
+  font-size: clamp(20px, 2.1vw, 31px);
+  font-weight: 400;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-align: center;
+}
+
+.clients-swiper .client-grid b {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 400;
+  transform: translateX(-50%);
+}
+
+.clients-swiper .swiper-pagination {
+  z-index: 7;
+  right: auto;
+  bottom: -28px;
+  left: 50%;
+  width: auto;
+  display: flex;
+  gap: 7px;
+  transform: translateX(-50%);
+}
+
+.clients-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  margin: 0 !important;
+  background: rgba(255, 255, 255, .45);
+  opacity: 1;
+}
+
+.clients-swiper .swiper-pagination-bullet-active {
+  width: 22px;
+  border-radius: 4px;
+  background: var(--gold);
+}
+
+@media (max-width: 760px) {
+  .clients-swiper {
+    top: 55%;
+    width: min(88vw, 540px);
+    height: min(390px, 54vh);
+  }
+
+  .clients-swiper .client-grid {
+    gap: 8px;
+  }
+
+  .clients-swiper .client-grid a {
+    padding: 24px 8px;
+    border-radius: 22px;
+  }
+
+  .clients-swiper .client-grid a::before {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    background-size: 16px 14px, 16px 14px, 16px 14px, 30px 14px, 21px 14px;
+    background-position: 16px 23px, 34px 23px, 52px 23px, 16px 40px, 46px 40px;
+  }
+
+  .clients-swiper .client-grid span {
+    font-size: clamp(11px, 3.1vw, 16px);
+    letter-spacing: .07em;
+  }
+
+  .clients-swiper .client-grid b {
+    bottom: 16px;
+    font-size: 13px;
+  }
+
+  .clients-swiper .swiper-pagination {
+    bottom: -24px;
+  }
+}

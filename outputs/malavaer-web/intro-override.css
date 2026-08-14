@@ -1,0 +1,63 @@
+/* Capa final: apertura clásica de Malavar Mx. */
+.intro {
+  background: #f4f4f1;
+  animation: introGone .7s 2.85s cubic-bezier(.7,0,.3,1) forwards;
+}
+
+.intro::before {
+  z-index: 1;
+  background: repeating-linear-gradient(105deg, transparent 0 13px, rgba(7, 23, 39, .045) 14px, transparent 15px 27px);
+  mix-blend-mode: multiply;
+  opacity: 1;
+}
+
+.intro::after {
+  display: none;
+}
+
+.intro-logo {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: min(42vw, 440px);
+  height: auto;
+  aspect-ratio: 1;
+  padding: 22px;
+  background: #fff;
+  box-shadow: 0 22px 58px rgba(7, 23, 39, .07);
+  animation: logoIn 1.35s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.intro-logo > img,
+.intro-logo > img.logo-clean {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  filter: none;
+  transition: none;
+}
+
+@media (max-width: 760px) {
+  .intro-logo {
+    width: min(74vw, 340px);
+    padding: 16px;
+  }
+}
+
+/* En la pantalla de flota sólo permanece la marca central de la imagen. */
+body.fleet-screen .brand-wordmark,
+body.fleet-screen .fleet-opening > div {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.fleet-screen .fleet-opening > img {
+  animation: none;
+  transform: translateY(5vh) scale(1.035);
+}
+
+body.fleet-screen .site-header {
+  justify-content: flex-end;
+}

@@ -13,8 +13,10 @@ document.querySelectorAll('[data-clean-logo]').forEach((logo) => {
         else if (brightness > 215) pixels.data[i + 3] = Math.round((238 - brightness) / 23 * 255);
       }
       logo.src = canvas.toDataURL('image/png');
+      logo.classList.add('logo-clean');
     } catch (_) {
       // El archivo sigue siendo visible si el navegador restringe el lienzo local.
+      logo.classList.add('logo-clean');
     }
   };
   if (logo.complete) cleanBackground();
@@ -22,6 +24,7 @@ document.querySelectorAll('[data-clean-logo]').forEach((logo) => {
 });
 
 const main = document.querySelector('main');
+const fleetOpening = document.querySelector('.fleet-opening');
 const hero = document.querySelector('.hero');
 const statement = document.querySelector('.statement');
 const fleetHeading = document.querySelector('.fleet-heading');
@@ -29,12 +32,7 @@ const vehicles = [...document.querySelectorAll('.vehicle')];
 const services = document.querySelector('.services');
 const clients = document.querySelector('.clients');
 const contact = document.querySelector('.contact');
-const sceneList = [hero, statement, fleetHeading, ...vehicles, services, clients, contact];
-const clientsSceneIndex = sceneList.indexOf(clients);
-const clientCards = [...clients.querySelectorAll('.client-grid a')];
-const clientCounter = document.createElement('p');
-clientCounter.className = 'client-counter';
-clients.append(clientCounter);
+const sceneList = [fleetOpening, hero, statement, fleetHeading, ...vehicles, services, clients, contact];
 const stage = document.createElement('div');
 stage.id = 'experience-stage';
 stage.setAttribute('aria-live', 'polite');
@@ -62,24 +60,12 @@ document.body.append(dots);
 
 let currentScene = 0;
 let locked = false;
-let currentClient = 0;
-function showClient(index) {
-  currentClient = Math.max(0, Math.min(index, clientCards.length - 1));
-  clientCards.forEach((card, cardIndex) => {
-    card.classList.toggle('client-active', cardIndex === currentClient);
-    card.classList.toggle('client-before', cardIndex < currentClient);
-    card.setAttribute('aria-hidden', cardIndex === currentClient ? 'false' : 'true');
-  });
-  clientCounter.textContent = `${String(currentClient + 1).padStart(2, '0')} / ${String(clientCards.length).padStart(2, '0')}`;
-}
-showClient(0);
 function showScene(index) {
   const next = Math.max(0, Math.min(index, sceneList.length - 1));
   if (next === currentScene && sceneList[currentScene].classList.contains('is-active')) return;
-  const previous = currentScene;
   currentScene = next;
-  if (currentScene === clientsSceneIndex && previous !== clientsSceneIndex) showClient(0);
-  document.body.classList.toggle('light-scene', [1, 2, 4, 6, 7].includes(currentScene));
+  document.body.classList.toggle('fleet-screen', currentScene === 0);
+  document.body.classList.toggle('light-scene', [2, 3, 5, 7, 8].includes(currentScene));
   sceneList.forEach((scene, sceneIndex) => {
     scene.classList.toggle('is-active', sceneIndex === currentScene);
     scene.classList.toggle('is-before', sceneIndex < currentScene);
@@ -89,18 +75,12 @@ function showScene(index) {
   [...dots.children].forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === currentScene));
 }
 showScene(0);
+window.setTimeout(() => {
+  if (currentScene === 0) moveScene(1);
+}, 7800);
 
 function moveScene(direction) {
   if (locked || !direction) return;
-  if (currentScene === clientsSceneIndex) {
-    const nextClient = currentClient + direction;
-    if (nextClient >= 0 && nextClient < clientCards.length) {
-      locked = true;
-      showClient(nextClient);
-      window.setTimeout(() => { locked = false; }, 760);
-      return;
-    }
-  }
   const next = currentScene + direction;
   if (next < 0 || next >= sceneList.length) return;
   locked = true;
@@ -114,10 +94,12 @@ window.addEventListener('wheel', (event) => {
 }, { passive: false });
 
 let touchStartY = 0;
-window.addEventListener('touchstart', (event) => { touchStartY = event.changedTouches[0].clientY; }, { passive: true });
+window.addEventListener('touchstart', (event) => {
+  touchStartY = event.changedTouches[0].clientY;
+}, { passive: true });
 window.addEventListener('touchend', (event) => {
-  const difference = touchStartY - event.changedTouches[0].clientY;
-  if (Math.abs(difference) > 45) moveScene(Math.sign(difference));
+  const verticalDifference = touchStartY - event.changedTouches[0].clientY;
+  if (Math.abs(verticalDifference) > 45) moveScene(Math.sign(verticalDifference));
 }, { passive: true });
 window.addEventListener('keydown', (event) => {
   if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
@@ -125,7 +107,7 @@ window.addEventListener('keydown', (event) => {
   if (['ArrowUp', 'PageUp'].includes(event.key)) { event.preventDefault(); moveScene(-1); }
 });
 
-const destinations = { inicio: 0, nosotros: 1, flota: 2, servicios: 6, clientes: 7, contacto: 8 };
+const destinations = { inicio: 1, nosotros: 2, flota: 3, servicios: 7, clientes: 8, contacto: 9 };
 document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', (event) => {
   const destination = link.getAttribute('href').slice(1);
   if (destinations[destination] !== undefined) { event.preventDefault(); showScene(destinations[destination]); }

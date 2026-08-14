@@ -1,0 +1,125 @@
+/* Lista estática de clientes: todos los nombres permanecen visibles. */
+.clients {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.clients-layout {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(230px, .72fr) minmax(0, 1.45fr);
+  gap: clamp(38px, 7vw, 120px);
+  align-items: center;
+  padding: 100px 8vw 58px;
+}
+
+.clients-heading {
+  position: static;
+  width: auto;
+  pointer-events: auto;
+}
+
+.clients-heading h2 {
+  margin: 0;
+  font-size: clamp(43px, 5.1vw, 76px);
+}
+
+.client-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(255, 255, 255, .17);
+  border-left: 1px solid rgba(255, 255, 255, .17);
+}
+
+.client-list a {
+  display: flex;
+  min-width: 0;
+  min-height: clamp(64px, 9vh, 88px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px clamp(14px, 1.6vw, 24px);
+  color: #f4f1eb;
+  border-right: 1px solid rgba(255, 255, 255, .17);
+  border-bottom: 1px solid rgba(255, 255, 255, .17);
+  font-family: "Bodoni Moda", "Times New Roman", serif;
+  font-size: clamp(13px, 1.2vw, 18px);
+  font-weight: 400;
+  letter-spacing: .09em;
+  line-height: 1.15;
+  text-decoration: none;
+  transition: color .25s ease, background .25s ease, padding .25s ease;
+}
+
+.client-list a:hover,
+.client-list a:focus-visible {
+  padding-left: clamp(18px, 2vw, 30px);
+  color: #fff;
+  outline: none;
+  background: rgba(255, 255, 255, .075);
+}
+
+.client-list a span {
+  flex: 0 0 auto;
+  color: var(--gold);
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 760px) {
+  .clients-layout {
+    display: block;
+    padding: 88px 7vw 34px;
+  }
+
+  .clients-heading {
+    margin-bottom: 18px;
+  }
+
+  .clients-heading .eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .clients-heading h2 {
+    font-size: 34px;
+    line-height: .95;
+  }
+
+  .client-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .client-list a {
+    min-height: clamp(45px, 7.2vh, 57px);
+    padding: 9px 10px;
+    font-size: clamp(9px, 3vw, 13px);
+    letter-spacing: .05em;
+  }
+
+  .client-list a:hover,
+  .client-list a:focus-visible {
+    padding-left: 13px;
+  }
+
+  .client-list a span {
+    font-size: 11px;
+  }
+}
+
+@media (max-height: 680px) {
+  .clients-layout {
+    padding-top: 78px;
+    padding-bottom: 24px;
+  }
+
+  .clients-heading h2 {
+    font-size: 32px;
+  }
+
+  .client-list a {
+    min-height: 43px;
+  }
+}
