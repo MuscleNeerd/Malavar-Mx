@@ -1865,13 +1865,6 @@ h2 em {
     border-bottom: 1px solid rgba(236, 232, 219, .14);
   }
 
-  .site-header nav a::after {
-    content: "\2197";
-    color: var(--gold);
-    font-size: 15px;
-    letter-spacing: 0;
-  }
-
   .site-header nav .nav-cta {
     min-height: 52px;
     margin-top: 26px;
@@ -1885,5 +1878,76 @@ h2 em {
   .menu-backdrop,
   .site-header nav {
     transition-duration: 0s !important;
+  }
+}
+
+/* Flechas de navegación: Font Awesome con el acabado sobrio en latón. */
+.ui-arrow {
+  display: inline-block;
+  flex: 0 0 auto;
+  color: var(--gold);
+  font-size: 12px;
+  line-height: 1;
+  transform: translateZ(0);
+  transition: color .25s ease, transform .25s ease;
+}
+
+.ui-arrow--diagonal {
+  transform: rotate(-45deg);
+}
+
+.button .ui-arrow {
+  color: currentColor;
+  font-size: 12px;
+}
+
+.text-link:hover .ui-arrow,
+.text-link:focus-visible .ui-arrow {
+  transform: translateX(5px);
+}
+
+.button:hover .ui-arrow--diagonal,
+.button:focus-visible .ui-arrow--diagonal {
+  transform: translate(2px, -2px) rotate(-45deg);
+}
+
+.service > .ui-arrow {
+  margin-top: 5px;
+  justify-self: end;
+}
+
+.site-header nav a::after {
+  content: none;
+}
+
+.site-header .nav-arrow {
+  display: none;
+}
+
+/* Reservaciones participa únicamente en el scroll general de la página. */
+.contact.scene {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+@media (max-width: 760px) {
+  .brand-wordmark {
+    min-height: 58px;
+    font-size: clamp(15px, 4.7vw, 19px) !important;
+    letter-spacing: .22em !important;
+  }
+
+  .menu-toggle {
+    flex: 0 0 48px;
+    align-self: center;
+  }
+
+  .site-header::after {
+    top: 15px;
+  }
+
+  .site-header .nav-arrow {
+    display: inline-block;
   }
 }
