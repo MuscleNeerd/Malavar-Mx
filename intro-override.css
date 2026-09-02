@@ -1,14 +1,22 @@
-/* Capa final: apertura clásica de Malavar Mx. */
+/* Apertura Malavar Mx: azul noche, luz en movimiento y marca de alto contraste. */
 .intro {
-  background: #f4f4f1;
-  animation: introGone .7s 2.85s cubic-bezier(.7,0,.3,1) forwards;
+  overflow: hidden;
+  color: #eee9de;
+  background: #000;
+  animation: introDeparture .39s 1.725s cubic-bezier(.7, 0, .3, 1) forwards;
+}
+
+.intro::before,
+.intro::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
 }
 
 .intro::before {
   z-index: 1;
-  background: repeating-linear-gradient(105deg, transparent 0 13px, rgba(7, 23, 39, .045) 14px, transparent 15px 27px);
-  mix-blend-mode: multiply;
-  opacity: 1;
+  inset: -38%;
+  display: none;
 }
 
 .intro::after {
@@ -16,17 +24,22 @@
 }
 
 .intro-logo {
-  position: relative;
-  z-index: 2;
   display: grid;
-  place-items: center;
-  width: min(42vw, 440px);
+  position: relative;
+  z-index: 3;
+  width: min(42vw, 470px);
   height: auto;
   aspect-ratio: 1;
-  padding: 22px;
-  background: #fff;
-  box-shadow: 0 22px 58px rgba(7, 23, 39, .07);
-  animation: logoIn 1.35s cubic-bezier(.2,.8,.2,1) both;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  animation: introMarkReveal 1.65s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.intro-logo::before {
+  display: none;
 }
 
 .intro-logo > img,
@@ -35,14 +48,76 @@
   width: 100%;
   height: auto;
   opacity: 1;
-  filter: none;
+  mix-blend-mode: normal;
+  filter:
+    sepia(10%)
+    saturate(82%)
+    brightness(1.12)
+    contrast(1.06)
+    drop-shadow(-1px -1px 0 rgba(255, 255, 255, .48))
+    drop-shadow(2px 3px 3px rgba(0, 0, 0, .72))
+    drop-shadow(0 0 9px rgba(218, 231, 240, .2));
+  animation: introLogoShine 1.65s ease-in-out both;
   transition: none;
+}
+
+@keyframes introLightSweep {
+  0% { opacity: 0; transform: rotate(-28deg) scale(.86); }
+  24% { opacity: .9; }
+  100% { opacity: .44; transform: rotate(42deg) scale(1.12); }
+}
+
+@keyframes introHalo {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.64); }
+  36% { opacity: .82; }
+  75% { opacity: .36; transform: translate(-50%, -50%) scale(1.02); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.22); }
+}
+
+@keyframes introMarkReveal {
+  0% { opacity: 1; clip-path: inset(0 100% 0 0); transform: scale(1); }
+  66% { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
+  78% { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
+}
+
+@keyframes introLogoShine {
+  0%, 58% {
+    filter:
+      sepia(10%) saturate(82%) brightness(1.12) contrast(1.06)
+      drop-shadow(-1px -1px 0 rgba(255, 255, 255, .48))
+      drop-shadow(2px 3px 3px rgba(0, 0, 0, .72))
+      drop-shadow(0 0 9px rgba(218, 231, 240, .2));
+  }
+  69% {
+    filter:
+      sepia(8%) saturate(90%) brightness(1.32) contrast(1.08)
+      drop-shadow(-1px -1px 0 rgba(255, 255, 255, .74))
+      drop-shadow(2px 3px 3px rgba(0, 0, 0, .72))
+      drop-shadow(0 0 24px rgba(210, 234, 255, .65));
+  }
+  100% {
+    filter:
+      sepia(10%) saturate(82%) brightness(1.12) contrast(1.06)
+      drop-shadow(-1px -1px 0 rgba(255, 255, 255, .48))
+      drop-shadow(2px 3px 3px rgba(0, 0, 0, .72))
+      drop-shadow(0 0 9px rgba(218, 231, 240, .2));
+  }
+}
+
+@keyframes introLogoGlow {
+  0%, 17% { opacity: 0; filter: invert(1) sepia(12%) saturate(660%) hue-rotate(166deg) brightness(1.06) contrast(.9) blur(8px); }
+  43% { opacity: 1; filter: invert(1) sepia(12%) saturate(660%) hue-rotate(166deg) brightness(1.18) contrast(.9) drop-shadow(0 0 24px rgba(238, 244, 247, .42)); }
+  100% { opacity: 1; filter: invert(1) sepia(12%) saturate(660%) hue-rotate(166deg) brightness(1.06) contrast(.9) drop-shadow(0 0 16px rgba(231, 238, 242, .28)); }
+}
+
+@keyframes introDeparture {
+  to { opacity: 0; visibility: hidden; transform: scale(1.04); }
 }
 
 @media (max-width: 760px) {
   .intro-logo {
-    width: min(74vw, 340px);
-    padding: 16px;
+    width: min(76vw, 360px);
   }
 }
 

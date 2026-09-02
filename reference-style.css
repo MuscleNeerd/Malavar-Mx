@@ -1,0 +1,1678 @@
+/* Dirección visual cinematográfica: negro profundo, azul noche y detalles en latón. */
+:root {
+  --ink: #e8e5dd;
+  --gold: #c49a5b;
+  --paper: #e9e7e1;
+  --line: rgba(231, 232, 230, .18);
+}
+
+body {
+  background: #05080c;
+  color: var(--ink);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  pointer-events: none;
+  opacity: .15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.site-header {
+  height: 92px;
+  padding: 20px 4.2vw;
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 17px;
+  right: 4.2vw;
+  left: 4.2vw;
+  height: 58px;
+  border: 1px solid rgba(236, 232, 219, .18);
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(3, 7, 12, .68), rgba(9, 18, 30, .2));
+  backdrop-filter: blur(12px);
+}
+
+.brand-wordmark {
+  padding-left: 20px;
+  color: #f4f2ec !important;
+  font-size: 13px !important;
+  letter-spacing: .34em !important;
+}
+
+.brand-wordmark::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 0;
+  width: 1px;
+  height: 16px;
+  background: var(--gold);
+}
+
+.site-header nav {
+  gap: clamp(16px, 2.2vw, 38px);
+}
+
+.site-header a {
+  color: rgba(248, 246, 240, .82);
+  font-size: 10px;
+  letter-spacing: .19em;
+  transition: color .25s ease;
+}
+
+.site-header a:hover { color: var(--gold); }
+
+.site-header .nav-cta {
+  padding: 10px 16px;
+  border-color: rgba(225, 212, 187, .52);
+  background: rgba(196, 154, 91, .08);
+}
+
+#experience-stage .scene {
+  transition: transform .9s cubic-bezier(.76, 0, .18, 1), opacity .5s ease;
+}
+
+#experience-stage .scene.is-before { transform: translateY(-100%) scale(.985); }
+
+.scene-dots {
+  right: 2.1vw;
+  gap: 9px;
+}
+
+.scene-dots::before {
+  content: "SCROLL";
+  position: absolute;
+  top: -41px;
+  right: -7px;
+  color: rgba(255, 255, 255, .55);
+  font: 600 8px "DM Sans", sans-serif;
+  letter-spacing: .28em;
+  writing-mode: vertical-rl;
+}
+
+.scene-dots button::after {
+  width: 12px;
+  height: 1px;
+  background: rgba(255, 255, 255, .55);
+}
+
+.scene-dots button.active::after {
+  width: 30px;
+  background: var(--gold);
+}
+
+/* Apertura de flota y portada. */
+.fleet-opening,
+.hero {
+  background: #04070b;
+}
+
+.fleet-opening > img {
+  filter: saturate(.65) contrast(1.12) brightness(.72) !important;
+}
+
+.fleet-opening::before {
+  display: none;
+}
+
+.fleet-opening::after {
+  background:
+    linear-gradient(180deg, rgba(1, 4, 8, .42), transparent 31%, rgba(1, 4, 8, .72)),
+    linear-gradient(90deg, rgba(1, 5, 10, .64), transparent 42%);
+}
+
+/* El título forma parte de la imagen de la flota: se separa del banner superior. */
+body.fleet-screen .fleet-opening > img {
+  transform: translateY(11vh) scale(1.045);
+  transform-origin: center center;
+}
+
+.hero {
+  isolation: isolate;
+  min-height: 100svh;
+  padding: 14vh 8vw 9vh;
+  overflow: hidden;
+}
+
+/* Panel editorial inspirado en las fichas de cada unidad. */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0 auto 0 0;
+  width: 50%;
+  background:
+    linear-gradient(90deg, rgba(2, 10, 18, .96), rgba(5, 24, 41, .88)),
+    linear-gradient(180deg, rgba(45, 79, 108, .16), transparent 58%);
+  border-right: 1px solid rgba(230, 225, 215, .14);
+  backdrop-filter: blur(4px);
+}
+
+.hero-copy {
+  z-index: 2;
+  width: min(41vw, 690px);
+  max-width: 690px;
+}
+
+.eyebrow {
+  margin-bottom: 25px;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: .28em;
+}
+
+.hero h1,
+.statement h2,
+.fleet-heading h2,
+.services h2,
+.clients-heading h2,
+.contact h2 {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: .9;
+}
+
+.vehicle h3 {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: .9;
+}
+
+.hero h1 {
+  font-size: clamp(64px, 7.6vw, 126px);
+  line-height: .86;
+}
+
+.hero h1 em,
+h2 em {
+  color: #d5b273;
+  font-weight: 400;
+}
+
+.hero-text {
+  max-width: 330px;
+  margin: 35px 0;
+  color: rgba(247, 244, 236, .78);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.button {
+  gap: 44px;
+  padding: 15px 18px;
+  border: 1px solid rgba(236, 218, 185, .38);
+  background: transparent;
+  color: #f5f1e9;
+}
+
+.button:hover {
+  background: var(--gold);
+  color: #0a0d11;
+}
+
+.hero-image {
+  z-index: 0;
+  inset: 0 0 0 50%;
+  opacity: 1;
+}
+
+.hero-image img,
+.hero-image video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(.2) saturate(.75) contrast(1.1) brightness(.7);
+}
+
+.hero-image::after { background: rgba(1, 6, 11, .2); }
+
+.scroll-prompt {
+  z-index: 2;
+  left: auto;
+  right: 8vw;
+  bottom: 8vh;
+  color: rgba(248, 246, 239, .72);
+}
+
+.scroll-prompt span { background: var(--gold); }
+
+/* Pantallas editoriales. */
+.statement,
+.fleet-heading,
+.services,
+.vehicle-light,
+.clients,
+.vehicle-dark,
+.vehicle-red,
+.contact {
+  background:
+    radial-gradient(ellipse at 78% -15%, rgba(63, 104, 142, .25), transparent 45%),
+    linear-gradient(125deg, #03070c, #091726 50%, #02060b) !important;
+}
+
+.statement {
+  padding-right: 13vw;
+}
+
+.statement::before,
+.fleet-heading::before {
+  content: "MALAVAR MX";
+  position: absolute;
+  top: 15vh;
+  right: 8vw;
+  color: rgba(229, 225, 214, .28);
+  font: 500 9px "DM Sans", sans-serif;
+  letter-spacing: .34em;
+  writing-mode: vertical-rl;
+}
+
+.statement-grid {
+  grid-template-columns: 1.35fr .55fr;
+  gap: 10vw;
+}
+
+.statement h2,
+.fleet-heading h2,
+.services h2,
+.contact h2 {
+  font-size: clamp(52px, 6.2vw, 104px);
+  line-height: .88;
+}
+
+.statement-grid > div {
+  padding: 25px 0 0 28px;
+  border-left: 1px solid rgba(217, 194, 151, .42);
+}
+
+.statement-grid > div p {
+  color: rgba(245, 242, 235, .72);
+  font-size: 14px;
+}
+
+.text-link {
+  color: #f6f2e8;
+  border-color: rgba(245, 242, 232, .6);
+  font-size: 9px;
+  letter-spacing: .19em;
+}
+
+.fleet-heading {
+  padding-left: 15vw;
+}
+
+.vehicle {
+  grid-template-columns: 1.08fr .92fr;
+}
+
+.vehicle-photo { position: relative; }
+
+.vehicle-photo::after {
+  content: "";
+  position: absolute;
+  inset: 9% 8%;
+  border: 1px solid rgba(243, 235, 222, .14);
+  pointer-events: none;
+}
+
+.vehicle-photo img {
+  filter: grayscale(.28) saturate(.72) contrast(1.08) brightness(.73) !important;
+  transform: scale(1.03);
+}
+
+.vehicle-info {
+  padding: 8vw 8vw 7vw 6.5vw;
+}
+
+.vehicle-info h3 {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(52px, 5.2vw, 79px);
+  font-weight: 500;
+  line-height: .9;
+  letter-spacing: -.035em;
+}
+
+.vehicle-info > p:not(.vehicle-no) {
+  color: rgba(247, 243, 234, .72);
+  font-size: 14px;
+}
+
+.vehicle ul { border-color: rgba(255, 255, 255, .18) !important; }
+
+.vehicle-yukon,
+.vehicle-cadillac,
+.vehicle-suburban {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  color: #f4f0e8;
+  background:
+    radial-gradient(ellipse at 82% 50%, rgba(39, 87, 125, .32), transparent 44%),
+    linear-gradient(130deg, #02070d, #08192a 54%, #03070c) !important;
+}
+
+.vehicle-yukon .vehicle-info,
+.vehicle-cadillac .vehicle-info,
+.vehicle-suburban .vehicle-info {
+  position: relative;
+  z-index: 2;
+  width: min(54%, 760px);
+  height: 100%;
+  padding-left: 8vw;
+  background:
+    linear-gradient(90deg, rgba(2, 12, 23, .84), rgba(5, 25, 43, .72) 78%, rgba(5, 25, 43, .33));
+  border-right: 1px solid rgba(230, 225, 215, .16);
+  backdrop-filter: blur(3px);
+}
+
+.vehicle-video {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #02070d;
+}
+
+.vehicle-video::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 5% 4%;
+  border: 1px solid rgba(238, 232, 219, .22);
+  pointer-events: none;
+}
+
+.vehicle-video::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(2, 7, 13, .18), transparent 44%), linear-gradient(0deg, rgba(2, 7, 13, .52), transparent 36%);
+  pointer-events: none;
+}
+
+.vehicle-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.72) contrast(1.08) brightness(.78);
+}
+
+.vehicle-video p {
+  position: absolute;
+  z-index: 2;
+  right: 10%;
+  bottom: 11%;
+  margin: 0;
+  color: rgba(247, 242, 233, .78);
+  font: 600 9px "DM Sans", sans-serif;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+
+.services {
+  grid-template-columns: .8fr 1.2fr;
+  padding-right: 12vw;
+}
+
+.service-list { border-color: rgba(237, 233, 225, .2); }
+
+.service {
+  grid-template-columns: 56px 1fr 30px;
+  padding: 30px 0;
+  border-color: rgba(237, 233, 225, .16);
+}
+
+.service h3 {
+  color: #f4f0e8;
+  font-family: "Bodoni Moda", "Times New Roman", serif;
+  font-size: 33px;
+  font-weight: 400;
+}
+
+.service p { color: rgba(244, 240, 232, .65); }
+
+/* Clientes y cierre. */
+.clients-heading { left: 8vw; }
+
+.clients-gallery .client-card {
+  border-radius: 0;
+  border-color: rgba(238, 233, 222, .22);
+  background:
+    linear-gradient(145deg, rgba(31, 53, 71, .85), rgba(5, 13, 22, .9)),
+    #08111c;
+}
+
+.clients-gallery .client-card::after {
+  content: "";
+  position: absolute;
+  right: -15%;
+  bottom: -25%;
+  width: 70%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(208, 169, 103, .18);
+  border-radius: 50%;
+}
+
+.client-logo { border-radius: 0; }
+.client-logo img { border-radius: 0; }
+.clients-pagination button { border-radius: 0; }
+
+.contact {
+  grid-template-columns: .9fr 1.1fr;
+  padding-right: 12vw;
+}
+
+.contact-copy {
+  padding-right: 4vw;
+}
+
+.contact-form {
+  padding: 34px 36px;
+  border: 1px solid rgba(240, 232, 215, .2);
+  background: rgba(7, 16, 27, .42);
+  backdrop-filter: blur(8px);
+}
+
+.contact-form label { color: rgba(241, 236, 226, .6); }
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  border-color: rgba(240, 232, 215, .25);
+}
+
+@media (max-width: 760px) {
+  .site-header { padding: 15px 5vw; }
+  .site-header::after { top: 10px; right: 5vw; left: 5vw; height: 58px; }
+  .brand-wordmark { font-size: 10px !important; letter-spacing: .24em !important; }
+  .site-header nav { background: #09121d; }
+  .scene-dots { display: none; }
+  body.fleet-screen .fleet-opening > img { transform: translateY(8vh) scale(1.06); }
+  .hero { padding: 19vh 8vw 10vh; }
+  .hero::before {
+    width: 100%;
+    background: linear-gradient(0deg, rgba(2, 10, 18, .94), rgba(5, 24, 41, .48) 75%, rgba(5, 24, 41, .18));
+    border-right: 0;
+  }
+  .hero-copy { width: 100%; }
+  .hero h1 { font-size: clamp(55px, 15vw, 80px); }
+  .hero-image { inset: 0; }
+  .hero-image::after { background: linear-gradient(0deg, #04070b 1%, rgba(4, 7, 11, .25) 95%); }
+  .hero::before { right: 4vw; bottom: 17vh; font-size: 130px; }
+  .scroll-prompt { left: 8vw; right: auto; }
+  .statement, .fleet-heading, .services, .contact { padding-right: 8vw; }
+  .fleet-heading { padding-left: 8vw; }
+  .statement-grid > div { padding-left: 18px; }
+  .statement::before, .fleet-heading::before { display: none; }
+  .vehicle-info { padding: 38px 8vw; }
+  .vehicle-photo::after { inset: 7%; }
+  .vehicle-yukon .vehicle-info,
+  .vehicle-cadillac .vehicle-info,
+  .vehicle-suburban .vehicle-info {
+    width: 100%;
+    height: 100%;
+    padding: 38px 8vw;
+    background: linear-gradient(0deg, rgba(2, 12, 23, .86), rgba(5, 25, 43, .54) 72%, rgba(5, 25, 43, .2));
+    border-right: 0;
+    border-top: 1px solid rgba(230, 225, 215, .13);
+  }
+  .vehicle-video::before { inset: 7%; }
+  .service h3 { font-size: 27px; }
+  .contact-form { padding: 24px 20px; }
+}
+
+/* Nuestros clientes: directorio editorial de marcas. */
+.clients {
+  display: grid;
+  grid-template-columns: minmax(235px, .62fr) minmax(0, 1.38fr);
+  gap: clamp(42px, 8vw, 132px);
+  align-items: start;
+  min-height: 100svh;
+  padding: clamp(128px, 17vh, 210px) 8vw clamp(82px, 11vh, 140px) !important;
+  overflow: visible;
+  background:
+    radial-gradient(ellipse at 85% 8%, rgba(55, 95, 127, .3), transparent 35%),
+    radial-gradient(ellipse at 12% 95%, rgba(155, 111, 53, .12), transparent 32%),
+    linear-gradient(125deg, #02070d 0%, #071827 55%, #03070c 100%) !important;
+}
+
+.clients-layout { display: contents; }
+
+.clients-heading {
+  position: relative;
+  z-index: 1;
+  top: auto;
+  left: auto;
+  width: auto;
+  padding-top: 9px;
+  pointer-events: auto;
+}
+
+.clients-heading h2 {
+  margin: 0 0 24px;
+  font-size: clamp(58px, 5.1vw, 88px);
+}
+
+.clients-description {
+  max-width: 285px;
+  margin: 0;
+  color: rgba(238, 237, 232, .66);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.client-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  counter-reset: client;
+}
+
+.client-list a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(132px, 15vh, 176px);
+  padding: 34px 26px;
+  overflow: hidden;
+  color: #f3f0e9;
+  text-decoration: none;
+  border: 1px solid rgba(235, 230, 218, .17);
+  background:
+    linear-gradient(130deg, rgba(18, 43, 62, .66), rgba(5, 13, 23, .76)),
+    #07121e;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+  counter-increment: client;
+  transition: transform .38s cubic-bezier(.2, .75, .25, 1), border-color .38s ease, background .38s ease, box-shadow .38s ease;
+}
+
+.client-list a::before {
+  content: counter(client, decimal-leading-zero);
+  position: absolute;
+  top: 19px;
+  left: 24px;
+  color: var(--gold);
+  font: 600 9px "DM Sans", sans-serif;
+  letter-spacing: .18em;
+}
+
+.client-list a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .38s ease;
+}
+
+.client-list a:hover,
+.client-list a:focus-visible {
+  z-index: 1;
+  transform: translateY(-6px);
+  border-color: rgba(205, 165, 99, .82);
+  outline: none;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(83, 142, 182, .25), transparent 34%),
+    linear-gradient(130deg, rgba(22, 53, 76, .92), rgba(6, 15, 27, .93));
+  box-shadow: 0 18px 34px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.client-list a:hover::after,
+.client-list a:focus-visible::after { transform: scaleX(1); }
+
+.client-list a > strong {
+  color: inherit;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(20px, 1.75vw, 30px);
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .clients {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: auto;
+    padding: 112px 8vw 70px !important;
+  }
+
+  .clients-heading { padding-top: 0; }
+  .clients-heading h2 { font-size: clamp(52px, 15vw, 72px); }
+  .client-list { grid-template-columns: 1fr; gap: 10px; }
+  .client-list a { min-height: 118px; padding: 22px; }
+  .client-list a::before { top: 17px; left: 21px; }
+  .client-list a > strong { font-size: clamp(20px, 6vw, 28px); }
+}
+
+/* Van Ejecutiva: una ficha urbana, más directa y funcional. */
+.vehicle-van-express {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #111417;
+}
+
+.van-gallery {
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 0 50%;
+  overflow: hidden;
+  background: #252729;
+}
+
+.van-gallery::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(13, 18, 22, .94) 0%, rgba(13, 18, 22, .78) 39%, rgba(13, 18, 22, .18) 68%, rgba(13, 18, 22, .08)),
+    linear-gradient(0deg, rgba(10, 12, 14, .42), transparent 50%);
+}
+
+.van-gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  filter: saturate(1.03) contrast(1.04) brightness(.78);
+  transform: scale(1.045);
+  animation: van-gallery-slide 31.5s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.van-gallery img:nth-child(1) { animation-delay: -.5s; }
+.van-gallery img:nth-child(2) { animation-delay: 3.5s; }
+.van-gallery img:nth-child(3) { animation-delay: 7s; }
+.van-gallery img:nth-child(4) { animation-delay: 10.5s; }
+.van-gallery img:nth-child(5) { animation-delay: 14s; }
+.van-gallery img:nth-child(6) { animation-delay: 17.5s; }
+.van-gallery img:nth-child(7) { animation-delay: 21s; }
+.van-gallery img:nth-child(8) { animation-delay: 24.5s; }
+.van-gallery img:nth-child(9) { animation-delay: 28s; }
+
+@keyframes van-gallery-slide {
+  0% { opacity: 0; transform: scale(1.045); }
+  1%, 9% { opacity: 1; transform: scale(1); }
+  11.111%, 100% { opacity: 0; transform: scale(1.045); }
+}
+
+.vehicle-van-express .vehicle-info {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  min-height: 100svh;
+  padding: 16vh 7vw 11vh;
+  background:
+    linear-gradient(145deg, rgba(18, 27, 33, .86), rgba(10, 13, 16, .76)),
+    rgba(14, 18, 22, .64);
+  border-right: 1px solid rgba(255, 255, 255, .16);
+  border-left: 5px solid #d64035;
+  backdrop-filter: blur(7px);
+}
+
+.vehicle-van-express .vehicle-no { color: #ff7259; }
+
+.vehicle-van-express .vehicle-info h3 {
+  margin: 13px 0 28px;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(52px, 5.5vw, 88px);
+  font-weight: 600;
+  letter-spacing: -.065em;
+  line-height: .84;
+  text-transform: uppercase;
+}
+
+.vehicle-van-express .vehicle-info > p:not(.vehicle-no) {
+  max-width: 410px;
+  color: rgba(255, 255, 255, .8);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.vehicle-van-express .vehicle-info ul {
+  max-width: 430px;
+  border-color: rgba(255, 255, 255, .22);
+}
+
+.vehicle-van-express .vehicle-info li::before { color: #ff7259; }
+
+.vehicle-van-express .text-link {
+  margin-top: 14px;
+  border-color: rgba(255, 255, 255, .78);
+}
+
+.vehicle-van-express .text-link:hover { color: #ff8a74; }
+
+@media (max-width: 760px) {
+  .vehicle-van-express {
+    display: flex;
+    align-items: flex-end;
+    min-height: 100svh;
+  }
+
+  .van-gallery::after {
+    background: linear-gradient(0deg, rgba(10, 13, 16, .97) 4%, rgba(10, 13, 16, .72) 48%, rgba(10, 13, 16, .1) 100%);
+  }
+
+  .vehicle-van-express .vehicle-info {
+    width: 100%;
+    min-height: 0;
+    padding: 42px 8vw 54px;
+    border-top: 4px solid #d64035;
+    border-right: 0;
+    border-left: 0;
+    background: linear-gradient(0deg, rgba(10, 13, 16, .92), rgba(10, 13, 16, .6));
+  }
+
+  .vehicle-van-express .vehicle-info h3 {
+    margin: 10px 0 18px;
+    font-size: clamp(48px, 16vw, 72px);
+  }
+}
+
+/* La Hiace mantiene la estructura de la van, con una secuencia propia de cuatro fotos. */
+.hiace-gallery img {
+  animation-name: hiace-gallery-slide;
+  animation-duration: 14s;
+}
+
+.hiace-gallery img:nth-child(1) { animation-delay: -.5s; }
+.hiace-gallery img:nth-child(2) { animation-delay: 3.5s; }
+.hiace-gallery img:nth-child(3) { animation-delay: 7s; }
+.hiace-gallery img:nth-child(4) { animation-delay: 10.5s; }
+
+@keyframes hiace-gallery-slide {
+  0% { opacity: 0; transform: scale(1.045); }
+  2%, 20% { opacity: 1; transform: scale(1); }
+  25%, 100% { opacity: 0; transform: scale(1.045); }
+}
+
+/* SUVs: una ficha de servicio con galería fotográfica de cinco escenas. */
+.vehicle-suvs {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  color: #f4f0e8;
+  background: #050a10 !important;
+}
+
+.suv-gallery {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background: #101a22;
+}
+
+.suv-gallery::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(3, 9, 15, .72) 0%, rgba(3, 9, 15, .46) 30%, rgba(3, 9, 15, .12) 67%, rgba(3, 9, 15, .04)),
+    linear-gradient(0deg, rgba(2, 6, 10, .34), transparent 48%);
+}
+
+.suv-gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  filter: saturate(.82) contrast(1.08) brightness(.7);
+  transform: scale(1.045);
+  animation: suv-gallery-slide 20s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.suv-gallery img:nth-child(1) { animation-delay: -.5s; }
+.suv-gallery img:nth-child(2) { animation-delay: 3.5s; }
+.suv-gallery img:nth-child(3) { animation-delay: 7.5s; }
+.suv-gallery img:nth-child(4) { animation-delay: 11.5s; }
+.suv-gallery img:nth-child(5) { animation-delay: 15.5s; }
+
+@keyframes suv-gallery-slide {
+  0% { opacity: 0; transform: scale(1.045); }
+  2%, 16% { opacity: 1; transform: scale(1); }
+  20%, 100% { opacity: 0; transform: scale(1.045); }
+}
+
+.vehicle-suvs .vehicle-info {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  min-height: 100svh;
+  padding: 16vh 7vw 11vh;
+  background:
+    linear-gradient(145deg, rgba(7, 17, 27, .38), rgba(4, 9, 15, .16)),
+    rgba(4, 9, 15, .12);
+  border-right: 1px solid rgba(236, 232, 219, .16);
+  border-left: 5px solid var(--gold);
+  backdrop-filter: blur(2px);
+}
+
+.vehicle-suvs .vehicle-no { color: var(--gold); }
+
+.vehicle-suvs .vehicle-info h3 {
+  margin: 13px 0 28px;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(56px, 6.1vw, 96px);
+  font-weight: 600;
+  letter-spacing: -.065em;
+  line-height: .86;
+  text-transform: uppercase;
+}
+
+.vehicle-suvs .vehicle-info h3 span {
+  display: inline-block;
+  margin-top: 18px;
+  color: rgba(255, 255, 255, .86);
+  font-size: clamp(20px, 2.15vw, 34px);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+}
+
+.vehicle-suvs .vehicle-info > p:not(.vehicle-no) {
+  max-width: 420px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.vehicle-suvs .vehicle-info ul {
+  max-width: 430px;
+  border-color: rgba(255, 255, 255, .22);
+}
+
+.vehicle-suvs .suv-models {
+  display: grid;
+  gap: 8px;
+  max-width: 500px;
+  margin: -4px 0 30px;
+  padding: 0;
+  border: 0 !important;
+  list-style: none;
+}
+
+.vehicle-suvs .suv-models li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 11px 16px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-left: 2px solid var(--gold);
+  background: linear-gradient(90deg, rgba(196, 154, 91, .16), rgba(255, 255, 255, .025));
+  color: #fff;
+  font-size: clamp(18px, 1.8vw, 29px);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+}
+
+.vehicle-suvs .suv-models li::before {
+  content: none;
+  display: none;
+}
+
+.vehicle-suvs .suv-features {
+  max-width: 430px;
+  margin: 0 0 24px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, .22);
+}
+
+.vehicle-suvs .vehicle-info li::before { color: var(--gold); }
+
+.vehicle-suvs .text-link {
+  margin-top: 14px;
+  border-color: rgba(255, 255, 255, .78);
+}
+
+.vehicle-suvs .text-link:hover { color: #e1bd82; }
+
+@media (max-width: 760px) {
+  .vehicle-suvs {
+    display: flex;
+    align-items: flex-end;
+    min-height: 100svh;
+  }
+
+  .suv-gallery {
+    inset: 0;
+  }
+
+  .suv-gallery::after {
+    background: linear-gradient(0deg, rgba(4, 9, 15, .97) 5%, rgba(4, 9, 15, .7) 52%, rgba(4, 9, 15, .12) 100%);
+  }
+
+  .vehicle-suvs .vehicle-info {
+    width: 100%;
+    min-height: 0;
+    padding: 42px 8vw 54px;
+    border-top: 4px solid var(--gold);
+    border-right: 0;
+    border-left: 0;
+    background: linear-gradient(0deg, rgba(4, 9, 15, .62), rgba(4, 9, 15, .2));
+    backdrop-filter: blur(2px);
+  }
+
+  .vehicle-suvs .vehicle-info h3 {
+    margin: 10px 0 18px;
+    font-size: clamp(48px, 16vw, 76px);
+  }
+
+  .vehicle-suvs .vehicle-info h3 span {
+    margin-top: 12px;
+    font-size: clamp(18px, 5.2vw, 28px);
+  }
+
+  .vehicle-suvs .suv-models {
+    gap: 6px;
+    margin: -2px 0 22px;
+  }
+
+  .vehicle-suvs .suv-models li {
+    padding: 9px 12px;
+    font-size: clamp(18px, 5.2vw, 26px);
+  }
+}
+
+/* La declaración de marca: un panel editorial sobre una galería de la flota. */
+.statement-showcase {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: row;
+  min-height: 100svh;
+  padding: 0 !important;
+  overflow: hidden;
+  background: #02070d !important;
+}
+
+.statement-gallery {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background: #02070d;
+}
+
+.statement-gallery::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, rgba(1, 7, 13, .98) 0%, rgba(3, 14, 25, .92) 37%, rgba(3, 14, 25, .42) 64%, rgba(2, 7, 13, .3) 100%), linear-gradient(0deg, rgba(2, 7, 13, .54), transparent 40%, rgba(2, 7, 13, .2));
+}
+
+.statement-gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  filter: saturate(.72) contrast(1.08) brightness(.7);
+  transform: scale(1.045);
+  animation: statement-fleet-slide 30s ease-in-out infinite;
+}
+
+.statement-gallery img:nth-child(1) { animation-delay: -.7s; }
+.statement-gallery img:nth-child(2) { animation-delay: 4.3s; }
+.statement-gallery img:nth-child(3) { animation-delay: 9.3s; }
+.statement-gallery img:nth-child(4) { animation-delay: 14.3s; }
+.statement-gallery img:nth-child(5) { animation-delay: 19.3s; }
+.statement-gallery img:nth-child(6) { animation-delay: 24.3s; }
+
+@keyframes statement-fleet-slide {
+  0% { opacity: 0; transform: scale(1.045); }
+  2%, 14% { opacity: 1; transform: scale(1); }
+  16.667%, 100% { opacity: 0; transform: scale(1.045); }
+}
+
+.statement-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 53%;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(148px, 18vh, 220px) 7vw 12vh 8vw;
+  border-right: 1px solid rgba(197, 159, 88, .2);
+  background: linear-gradient(90deg, rgba(2, 10, 18, .96) 0%, rgba(4, 20, 34, .9) 74%, rgba(4, 20, 34, .6) 100%);
+  backdrop-filter: blur(5px);
+}
+
+.statement-panel .statement-grid {
+  display: block;
+  max-width: 690px;
+}
+
+.statement-panel h2 {
+  margin: 15px 0 38px;
+  color: #f7f2e9;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(58px, 6.4vw, 104px);
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: .84;
+}
+
+.statement-panel h2 em {
+  color: #d5a653;
+  font-style: italic;
+}
+
+.statement-panel .statement-grid > div {
+  max-width: 470px;
+  padding-left: 0;
+}
+
+.statement-panel .statement-grid > div > p {
+  color: rgba(238, 242, 245, .78);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.statement-panel .text-link {
+  margin-top: 28px;
+  color: #f7f2e9;
+  border-color: rgba(247, 242, 233, .58);
+}
+
+.statement-panel .text-link:hover {
+  color: #d5a653;
+  border-color: #d5a653;
+}
+
+@media (max-width: 760px) {
+  .statement-showcase {
+    align-items: flex-end;
+  }
+
+  .statement-gallery::after {
+    background: linear-gradient(0deg, rgba(2, 7, 13, .97) 3%, rgba(2, 10, 18, .83) 48%, rgba(2, 10, 18, .28) 100%);
+  }
+
+  .statement-panel {
+    width: 100%;
+    min-height: 100svh;
+    justify-content: flex-end;
+    padding: 130px 8vw 62px;
+    border-top: 1px solid rgba(197, 159, 88, .25);
+    border-right: 0;
+    background: linear-gradient(0deg, rgba(2, 8, 14, .97) 0%, rgba(3, 14, 25, .72) 58%, rgba(3, 14, 25, .2) 100%);
+  }
+
+  .statement-panel h2 {
+    margin: 12px 0 28px;
+    font-size: clamp(55px, 16vw, 86px);
+  }
+
+  .statement-panel .statement-grid > div > p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
+
+/* Ajuste de composición: contenido alineado a la izquierda y más paisaje visible. */
+.statement-showcase {
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.statement-gallery::after {
+  background: linear-gradient(90deg, rgba(1, 7, 13, .62) 0%, rgba(3, 14, 25, .34) 42%, rgba(2, 7, 13, .14) 72%, rgba(2, 7, 13, .22) 100%), linear-gradient(0deg, rgba(2, 7, 13, .42), transparent 42%, rgba(2, 7, 13, .12));
+}
+
+.statement-panel {
+  align-self: stretch;
+  width: 44%;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(140px, 17vh, 205px) clamp(34px, 5.5vw, 92px) 11vh clamp(34px, 7.5vw, 128px);
+  background: linear-gradient(90deg, rgba(2, 10, 18, .78) 0%, rgba(4, 20, 34, .57) 72%, rgba(4, 20, 34, .28) 100%);
+  backdrop-filter: blur(2px);
+}
+
+.statement-panel .statement-grid {
+  max-width: 540px;
+}
+
+.statement-panel h2 {
+  max-width: 520px;
+  margin: 17px 0 42px;
+  font-size: clamp(52px, 5.2vw, 88px);
+  line-height: .9;
+}
+
+.statement-panel .statement-grid > div > p {
+  max-width: 390px;
+  margin-bottom: 29px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.statement-panel .statement-grid > div {
+  padding-left: 20px;
+}
+
+@media (max-width: 760px) {
+  .statement-showcase {
+    align-items: flex-end;
+  }
+
+  .statement-gallery::after {
+    background: linear-gradient(0deg, rgba(2, 7, 13, .92) 4%, rgba(2, 10, 18, .68) 52%, rgba(2, 10, 18, .18) 100%);
+  }
+
+  .statement-panel {
+    width: 100%;
+    padding: 130px 8vw 62px;
+    background: linear-gradient(0deg, rgba(2, 8, 14, .9) 0%, rgba(3, 14, 25, .6) 58%, rgba(3, 14, 25, .14) 100%);
+  }
+
+  .statement-panel h2 {
+    max-width: 500px;
+    font-size: clamp(55px, 16vw, 86px);
+  }
+}
+
+/* Portada: panel ligero y tipografía de alta gama para “El viaje empieza antes…”. */
+.hero::before {
+  width: 46%;
+  background: linear-gradient(90deg, rgba(2, 10, 18, .62) 0%, rgba(5, 24, 41, .4) 72%, rgba(5, 24, 41, .14) 100%);
+  border-right-color: rgba(230, 225, 215, .1);
+  backdrop-filter: blur(2px);
+}
+
+.hero-copy {
+  width: min(39vw, 600px);
+  max-width: 600px;
+}
+
+.hero h1 {
+  max-width: 600px;
+  font-family: "Bodoni Moda", "Times New Roman", serif;
+  font-size: clamp(60px, 7vw, 116px);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: .88;
+}
+
+.hero-text {
+  max-width: 365px;
+  line-height: 1.85;
+}
+
+@media (max-width: 760px) {
+  .hero::before {
+    width: 100%;
+    background: linear-gradient(0deg, rgba(2, 7, 13, .78) 2%, rgba(2, 10, 18, .42) 62%, rgba(2, 10, 18, .12) 100%);
+    border-right: 0;
+  }
+
+  .hero-copy {
+    width: 100%;
+  }
+
+  .hero h1 {
+    max-width: 520px;
+    font-size: clamp(56px, 15vw, 82px);
+  }
+}
+
+/* Misma transparencia editorial de las fichas de flota, aplicada a la portada. */
+.hero::before {
+  width: 50%;
+  background: linear-gradient(90deg, rgba(2, 10, 18, .32) 0%, rgba(5, 24, 41, .2) 70%, rgba(5, 24, 41, .05) 100%);
+  border-right-color: rgba(230, 225, 215, .06);
+  backdrop-filter: blur(.5px);
+}
+
+.hero h1 {
+  font-family: "Michroma", "DM Sans", sans-serif;
+  font-size: clamp(42px, 4.5vw, 80px);
+  font-weight: 400;
+  letter-spacing: -.065em;
+  line-height: .98;
+}
+
+.hero h1 em {
+  font-style: normal;
+  font-weight: 400;
+}
+
+@media (max-width: 760px) {
+  .hero::before {
+    inset: 0 auto 0 0;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(2, 7, 13, .7) 2%, rgba(2, 10, 18, .3) 62%, rgba(2, 10, 18, .06) 100%);
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 15vw, 82px);
+  }
+}
+
+/* Unifica los encabezados principales con la tipografía del título “GMC Yukon”. */
+.hero h1,
+.statement-panel h2,
+.fleet-heading h2,
+.services-intro h2,
+.clients-heading h2,
+.contact-copy h2 {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: .9;
+}
+
+.hero h1 em,
+.statement-panel h2 em,
+.fleet-heading h2 em,
+.services-intro h2 em,
+.clients-heading h2 em,
+.contact-copy h2 em {
+  font-style: italic;
+}
+
+/* Tipografía compartida con el encabezado “GMC Yukon”.
+   La clase explícita evita que los estilos de cada pantalla la sobrescriban. */
+.gmc-heading-type {
+  font-family: "Cormorant Garamond", "Times New Roman", serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -.035em !important;
+}
+
+.gmc-heading-type em {
+  font-family: inherit !important;
+}
+
+/* Portada: tratamiento sans serif ligero inspirado en la referencia “VALUE”. */
+.hero h1.value-heading {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: clamp(42px, 4.5vw, 80px);
+  font-weight: 300 !important;
+  letter-spacing: .105em !important;
+  line-height: 1.04 !important;
+  text-transform: uppercase;
+}
+
+.hero h1.value-heading em {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+}
+
+.statement-panel h2.value-heading {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+  font-weight: 300 !important;
+  letter-spacing: .105em !important;
+  line-height: 1.04 !important;
+  text-transform: uppercase;
+}
+
+.statement-panel h2.value-heading em {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+}
+
+.fleet-heading h2.value-heading {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+  font-weight: 300 !important;
+  letter-spacing: .105em !important;
+  line-height: 1.04 !important;
+  text-transform: uppercase;
+}
+
+.fleet-heading h2.value-heading em {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+}
+
+@media (max-width: 760px) {
+  .hero h1.value-heading {
+    font-size: clamp(34px, 10.8vw, 62px);
+    letter-spacing: .075em !important;
+  }
+
+  .statement-panel h2.value-heading {
+    font-size: clamp(38px, 11vw, 70px);
+    letter-spacing: .075em !important;
+  }
+
+  .fleet-heading h2.value-heading {
+    font-size: clamp(38px, 11vw, 70px);
+    letter-spacing: .075em !important;
+  }
+}
+
+/* Las fichas de Hiace y Van Ejecutiva comparten el tratamiento SUV: fondo a pantalla completa y panel translúcido. */
+.vehicle-van-express {
+  background: #050a10 !important;
+}
+
+.vehicle-van-express .van-gallery {
+  inset: 0;
+}
+
+.vehicle-van-express .van-gallery::after {
+  background:
+    linear-gradient(90deg, rgba(3, 9, 15, .72) 0%, rgba(3, 9, 15, .46) 30%, rgba(3, 9, 15, .12) 67%, rgba(3, 9, 15, .04)),
+    linear-gradient(0deg, rgba(2, 6, 10, .34), transparent 48%);
+}
+
+.vehicle-van-express .vehicle-info {
+  background:
+    linear-gradient(145deg, rgba(7, 17, 27, .38), rgba(4, 9, 15, .16)),
+    rgba(4, 9, 15, .12);
+  border-left: 5px solid var(--gold);
+  backdrop-filter: blur(2px);
+}
+
+.vehicle-van-express .vehicle-no {
+  color: var(--gold);
+}
+
+.vehicle-van-express .vehicle-info h3 {
+  font-size: clamp(56px, 6.1vw, 96px);
+}
+
+.vehicle-van-express .vehicle-info li::before {
+  color: var(--gold);
+}
+
+@media (max-width: 760px) {
+  .vehicle-van-express .vehicle-info {
+    border-top-color: var(--gold);
+    border-left: 0;
+    background: linear-gradient(0deg, rgba(4, 9, 15, .62), rgba(4, 9, 15, .2));
+    backdrop-filter: blur(2px);
+  }
+}
+
+/* Servicios: tipografía geométrica y ligera inspirada en la referencia VALUE. */
+.services,
+.services .eyebrow,
+.services h2,
+.services h3,
+.services p,
+.services span,
+.services b {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+.services-intro h2.gmc-heading-type {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: clamp(54px, 6.2vw, 104px);
+  font-weight: 300 !important;
+  letter-spacing: .08em !important;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.services-intro h2.gmc-heading-type em {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  letter-spacing: .08em;
+}
+
+.services .eyebrow {
+  font-weight: 400;
+  letter-spacing: .3em;
+}
+
+.services .service h3 {
+  font-size: clamp(24px, 2.25vw, 35px);
+  font-weight: 400;
+  letter-spacing: .045em;
+  line-height: 1.12;
+}
+
+.services .service p {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: .045em;
+  line-height: 1.6;
+}
+
+.services .service span {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .16em;
+}
+
+.services .service b {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+@media (max-width: 760px) {
+  .services-intro h2.gmc-heading-type {
+    font-size: clamp(40px, 12vw, 72px);
+    letter-spacing: .06em !important;
+  }
+
+  .services-intro h2.gmc-heading-type em {
+    letter-spacing: .06em;
+  }
+
+  .services .service h3 {
+    font-size: 24px;
+  }
+
+  .services .service p {
+    font-size: 12px;
+  }
+}
+
+/* Clientes: cada casilla muestra el logotipo proporcionado, respetando su proporción. */
+.client-list a > img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transition: transform .38s cubic-bezier(.2, .75, .25, 1), filter .38s ease;
+}
+
+.client-list a:hover > img,
+.client-list a:focus-visible > img {
+  transform: scale(1.035);
+  filter: drop-shadow(0 5px 9px rgba(0, 0, 0, .22));
+}
+
+@media (max-width: 760px) {
+  .client-list a > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+/* Clientes: cuadrícula limpia, sin contornos ni índices; todos los logos comparten el mismo espacio. */
+.client-list a {
+  min-height: clamp(132px, 15vh, 176px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.client-list {
+  grid-auto-rows: clamp(132px, 15vh, 176px);
+}
+
+.client-list a::before,
+.client-list a::after {
+  content: none;
+  display: none;
+}
+
+.client-list a > img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+
+.client-list a:hover,
+.client-list a:focus-visible {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Reservaciones: tipografía geométrica y minimalista inspirada en la referencia VALUE. */
+.contact,
+.contact .eyebrow,
+.contact h2,
+.contact h2 em,
+.contact-copy > p:not(.eyebrow),
+.contact-copy a,
+.contact-form,
+.contact-form label,
+.contact-form input,
+.contact-form textarea,
+.contact-form select,
+.contact-form .button,
+.contact-form .form-note {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+.contact h2.gmc-heading-type {
+  font-family: "Josefin Sans", "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: clamp(54px, 6.2vw, 100px);
+  font-weight: 300 !important;
+  letter-spacing: .06em !important;
+  line-height: 1.04 !important;
+}
+
+.contact h2.gmc-heading-type em {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+}
+
+.contact-copy > p:not(.eyebrow) {
+  font-weight: 300;
+  letter-spacing: .035em;
+}
+
+.contact-copy .phone-link {
+  font-family: inherit !important;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: .045em;
+}
+
+.contact-copy .email-link {
+  font-family: inherit !important;
+  font-weight: 300;
+  letter-spacing: .045em;
+}
+
+.contact-copy .whatsapp-link {
+  margin-top: 28px;
+  border: 1px solid rgba(196, 154, 91, .58);
+  background: rgba(196, 154, 91, .08);
+}
+
+.contact-copy .whatsapp-link:hover,
+.contact-copy .whatsapp-link:focus-visible {
+  background: var(--gold);
+}
+
+.contact-form label {
+  font-weight: 400;
+  letter-spacing: .16em;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  font-family: inherit !important;
+  font-weight: 300;
+  letter-spacing: .025em;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  font-family: inherit;
+  font-weight: 300;
+  letter-spacing: .025em;
+}
+
+.contact-form .button {
+  font-family: inherit !important;
+  font-weight: 400;
+  letter-spacing: .16em;
+}
+
+@media (max-width: 760px) {
+  .client-list {
+    grid-auto-rows: 118px;
+  }
+
+  .client-list a {
+    min-height: 118px;
+  }
+
+  .contact h2.gmc-heading-type {
+    font-size: clamp(42px, 12vw, 74px);
+    letter-spacing: .045em !important;
+  }
+}

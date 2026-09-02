@@ -1,125 +1,253 @@
-/* Lista estática de clientes: todos los nombres permanecen visibles. */
+/* Galería autosuficiente: cuatro páginas, tres clientes por página. */
 .clients {
   display: block;
   padding: 0;
   overflow: hidden;
 }
 
-.clients-layout {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: minmax(230px, .72fr) minmax(0, 1.45fr);
-  gap: clamp(38px, 7vw, 120px);
-  align-items: center;
-  padding: 100px 8vw 58px;
-}
-
 .clients-heading {
-  position: static;
-  width: auto;
-  pointer-events: auto;
+  position: absolute;
+  z-index: 5;
+  top: 13.5vh;
+  left: 8vw;
+  width: min(318px, 27vw);
+  pointer-events: none;
 }
 
 .clients-heading h2 {
-  margin: 0;
-  font-size: clamp(43px, 5.1vw, 76px);
+  margin: 0 0 18px;
+  font-size: clamp(38px, 3.3vw, 56px);
 }
 
-.client-list {
+.clients-description {
+  margin: 0;
+  color: rgba(235, 240, 245, .7);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.clients-gallery {
+  position: absolute;
+  z-index: 3;
+  top: 54%;
+  left: 50%;
+  width: min(1010px, 72vw);
+  height: min(380px, 48vh);
+  transform: translate(-42%, -38%);
+}
+
+.client-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.client-track {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  transform: translateX(0);
+  transition: transform .76s cubic-bezier(.72, 0, .2, 1);
+  will-change: transform;
+}
+
+.client-page {
+  flex: 0 0 25%;
+  width: 25%;
+  height: 100%;
+  padding: 2px;
+}
+
+.clients-gallery .client-grid {
+  position: static;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(255, 255, 255, .17);
-  border-left: 1px solid rgba(255, 255, 255, .17);
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.client-list a {
+.clients-gallery .client-card {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   min-width: 0;
-  min-height: clamp(64px, 9vh, 88px);
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 15px clamp(14px, 1.6vw, 24px);
+  padding: 28px;
+  overflow: hidden;
   color: #f4f1eb;
-  border-right: 1px solid rgba(255, 255, 255, .17);
-  border-bottom: 1px solid rgba(255, 255, 255, .17);
-  font-family: "Bodoni Moda", "Times New Roman", serif;
-  font-size: clamp(13px, 1.2vw, 18px);
-  font-weight: 400;
-  letter-spacing: .09em;
-  line-height: 1.15;
   text-decoration: none;
-  transition: color .25s ease, background .25s ease, padding .25s ease;
+  border: 1px solid rgba(198, 212, 226, .26);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(110, 159, 202, .27), transparent 27%),
+    linear-gradient(145deg, #162c39, #111827 66%, #0c1320);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 18px 46px rgba(0, 0, 0, .24);
+  transition: transform .35s ease, border-color .35s ease, background .35s ease;
 }
 
-.client-list a:hover,
-.client-list a:focus-visible {
-  padding-left: clamp(18px, 2vw, 30px);
-  color: #fff;
+.clients-gallery .client-card:hover,
+.clients-gallery .client-card:focus-visible {
+  transform: translateY(-7px);
+  border-color: rgba(203, 164, 95, .9);
   outline: none;
-  background: rgba(255, 255, 255, .075);
+  background:
+    radial-gradient(circle at 84% 12%, rgba(138, 188, 228, .4), transparent 30%),
+    linear-gradient(145deg, #1a3544, #151d31 66%, #0f1725);
 }
 
-.client-list a span {
-  flex: 0 0 auto;
+.client-logo {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, .08);
+}
+
+.client-logo img {
+  width: 41px;
+  height: 41px;
+  padding: 4px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f7f5f0;
+}
+
+.client-kicker {
+  margin-bottom: 13px;
   color: var(--gold);
-  font-family: "DM Sans", sans-serif;
-  font-size: 15px;
-  letter-spacing: 0;
+  font: 600 9px "DM Sans", sans-serif;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.clients-gallery .client-card strong {
+  display: block;
+  font-family: "Bodoni Moda", "Times New Roman", serif;
+  font-size: clamp(24px, 2.25vw, 37px);
+  font-weight: 400;
+  letter-spacing: .08em;
+  line-height: 1.05;
+}
+
+.client-link {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, .72);
+  font: 600 9px "DM Sans", sans-serif;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.client-link b {
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.clients-pagination {
+  position: absolute;
+  z-index: 8;
+  right: 0;
+  bottom: -30px;
+  display: flex;
+  gap: 7px;
+}
+
+.clients-pagination button {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .45);
+  transition: width .25s ease, background .25s ease;
+}
+
+.clients-pagination button.active {
+  width: 22px;
+  background: var(--gold);
 }
 
 @media (max-width: 760px) {
-  .clients-layout {
-    display: block;
-    padding: 88px 7vw 34px;
-  }
-
   .clients-heading {
-    margin-bottom: 18px;
-  }
-
-  .clients-heading .eyebrow {
-    margin-bottom: 8px;
+    top: 11vh;
+    width: min(72vw, 320px);
   }
 
   .clients-heading h2 {
-    font-size: 34px;
-    line-height: .95;
+    margin-bottom: 9px;
+    font-size: 35px;
   }
 
-  .client-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .client-list a {
-    min-height: clamp(45px, 7.2vh, 57px);
-    padding: 9px 10px;
-    font-size: clamp(9px, 3vw, 13px);
-    letter-spacing: .05em;
-  }
-
-  .client-list a:hover,
-  .client-list a:focus-visible {
-    padding-left: 13px;
-  }
-
-  .client-list a span {
+  .clients-description {
     font-size: 11px;
   }
-}
 
-@media (max-height: 680px) {
-  .clients-layout {
-    padding-top: 78px;
-    padding-bottom: 24px;
+  .clients-gallery {
+    top: 57%;
+    width: 84vw;
+    height: min(340px, 44vh);
+    transform: translate(-50%, -35%);
   }
 
-  .clients-heading h2 {
-    font-size: 32px;
+  .clients-gallery .client-grid {
+    gap: 7px;
   }
 
-  .client-list a {
-    min-height: 43px;
+  .clients-gallery .client-card {
+    padding: 15px 10px;
+    border-radius: 17px;
+  }
+
+  .client-logo {
+    top: 14px;
+    left: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .client-logo img {
+    width: 25px;
+    height: 25px;
+    padding: 2px;
+    border-radius: 6px;
+  }
+
+  .client-kicker {
+    margin-bottom: 8px;
+    font-size: 6px;
+    letter-spacing: .08em;
+  }
+
+  .clients-gallery .client-card strong {
+    font-size: clamp(13px, 4vw, 19px);
+    letter-spacing: .06em;
+  }
+
+  .client-link {
+    gap: 4px;
+    margin-top: 12px;
+    font-size: 6px;
+    letter-spacing: .06em;
+  }
+
+  .client-link b {
+    font-size: 11px;
+  }
+
+  .clients-pagination {
+    right: 0;
+    bottom: -22px;
   }
 }

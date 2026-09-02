@@ -1,8 +1,9 @@
-/* Navegación por escenas: la ventana permanece fija. */
+/* Scroll normal del sitio; la navegación por escenas queda desactivada para evitar bloquear la página. */
 html,
 body,
 .scene {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body,
