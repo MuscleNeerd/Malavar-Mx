@@ -34,38 +34,636 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
+    <!-- Datos estructurados. PENDIENTE: en cuanto existan los perfiles de
+         Instagram, Facebook, YouTube, LinkedIn y Google Business Profile,
+         añadir dentro del nodo #business un array "sameAs" con sus URLs.
+         Es la señal de entidad que hoy falta y la de mayor retorno del
+         informe (ver GEO-ANALYSIS.md, sección 4). No poner URLs inventadas:
+         un sameAs roto es peor que ninguno. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://malavar.mx/#business",
-        "name": "Malavar Mx",
-        "url": "https://malavar.mx/",
-        "logo": "https://malavar.mx/assets/favicon-512x512.png",
-        "image": "https://malavar.mx/assets/og-image.jpg",
-        "description": "Renta de camionetas de lujo con chofer para traslados ejecutivos, eventos y rutas privadas en Morelos y México.",
-        "telephone": "+52 55 2212 1359",
-        "email": "s.p.ejecutivo@gmail.com",
-        "priceRange": "$$$",
-        "areaServed": [
+        "@graph": [
           {
-            "@type": "AdministrativeArea",
-            "name": "Morelos"
+            "@type": [
+              "LocalBusiness",
+              "AutoRental"
+            ],
+            "@id": "https://malavar.mx/#business",
+            "name": "Malavar Mx",
+            "url": "https://malavar.mx/",
+            "logo": "https://malavar.mx/assets/favicon-512x512.png",
+            "image": "https://malavar.mx/assets/og-image.jpg",
+            "description": "Renta de camionetas de lujo con chofer para traslados ejecutivos, eventos y rutas privadas en Morelos y la Ciudad de México.",
+            "slogan": "Movilidad que deja huella",
+            "telephone": "+52 55 2212 1359",
+            "email": "s.p.ejecutivo@gmail.com",
+            "priceRange": "$$$",
+            "currenciesAccepted": "MXN",
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "Morelos",
+              "addressCountry": "MX"
+            },
+            "areaServed": [
+              {
+                "@type": "AdministrativeArea",
+                "name": "Morelos"
+              },
+              {
+                "@type": "City",
+                "name": "Cuernavaca"
+              },
+              {
+                "@type": "City",
+                "name": "Ciudad de México"
+              },
+              {
+                "@type": "Country",
+                "name": "México"
+              }
+            ],
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "00:00",
+                "closes": "23:59"
+              }
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+52 55 2212 1359",
+                "email": "s.p.ejecutivo@gmail.com",
+                "contactType": "reservations",
+                "areaServed": "MX",
+                "availableLanguage": [
+                  "Spanish"
+                ],
+                "hoursAvailable": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                  ],
+                  "opens": "00:00",
+                  "closes": "23:59"
+                }
+              }
+            ],
+            "makesOffer": [
+              {
+                "@id": "https://malavar.mx/#cadillac-escalade"
+              },
+              {
+                "@id": "https://malavar.mx/#gmc-yukon"
+              },
+              {
+                "@id": "https://malavar.mx/#chevrolet-suburban"
+              },
+              {
+                "@id": "https://malavar.mx/#toyota-hiace"
+              },
+              {
+                "@id": "https://malavar.mx/#suvs-compactas"
+              },
+              {
+                "@id": "https://malavar.mx/#van-ejecutiva"
+              }
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Flota Malavar Mx",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@id": "https://malavar.mx/#cadillac-escalade"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@id": "https://malavar.mx/#gmc-yukon"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@id": "https://malavar.mx/#chevrolet-suburban"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@id": "https://malavar.mx/#toyota-hiace"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@id": "https://malavar.mx/#suvs-compactas"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@id": "https://malavar.mx/#van-ejecutiva"
+                  }
+                }
+              ]
+            }
           },
           {
-            "@type": "Country",
-            "name": "México"
+            "@type": "WebSite",
+            "@id": "https://malavar.mx/#website",
+            "url": "https://malavar.mx/",
+            "name": "Malavar Mx",
+            "inLanguage": "es-MX",
+            "publisher": {
+              "@id": "https://malavar.mx/#business"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://malavar.mx/#webpage",
+            "url": "https://malavar.mx/",
+            "name": "Renta de Camionetas de Lujo en México | Malavar Mx",
+            "isPartOf": {
+              "@id": "https://malavar.mx/#website"
+            },
+            "about": {
+              "@id": "https://malavar.mx/#business"
+            },
+            "inLanguage": "es-MX"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://malavar.mx/#traslados-ejecutivos",
+            "name": "Traslados ejecutivos",
+            "serviceType": "Traslados ejecutivos",
+            "description": "Traslado de directivos, clientes e invitados con chofer asignado, horario cerrado y espera en aeropuerto con seguimiento de vuelo.",
+            "provider": {
+              "@id": "https://malavar.mx/#business"
+            },
+            "areaServed": [
+              {
+                "@type": "AdministrativeArea",
+                "name": "Morelos"
+              },
+              {
+                "@type": "City",
+                "name": "Cuernavaca"
+              },
+              {
+                "@type": "City",
+                "name": "Ciudad de México"
+              },
+              {
+                "@type": "Country",
+                "name": "México"
+              }
+            ],
+            "availableChannel": {
+              "@type": "ServiceChannel",
+              "servicePhone": "+52 55 2212 1359",
+              "serviceUrl": "https://malavar.mx/#contacto"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://malavar.mx/#eventos-celebraciones",
+            "name": "Eventos y celebraciones",
+            "serviceType": "Eventos y celebraciones",
+            "description": "Logística de movilidad para bodas, congresos y celebraciones privadas: rondas entre hotel y sede, recogidas escalonadas y salidas al cierre.",
+            "provider": {
+              "@id": "https://malavar.mx/#business"
+            },
+            "areaServed": [
+              {
+                "@type": "AdministrativeArea",
+                "name": "Morelos"
+              },
+              {
+                "@type": "City",
+                "name": "Cuernavaca"
+              },
+              {
+                "@type": "City",
+                "name": "Ciudad de México"
+              },
+              {
+                "@type": "Country",
+                "name": "México"
+              }
+            ],
+            "availableChannel": {
+              "@type": "ServiceChannel",
+              "servicePhone": "+52 55 2212 1359",
+              "serviceUrl": "https://malavar.mx/#contacto"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://malavar.mx/#rutas-privadas",
+            "name": "Rutas privadas",
+            "serviceType": "Rutas privadas",
+            "description": "Itinerarios a medida por bloque de horas, jornada completa o varios días, con chofer asignado durante todo el periodo contratado.",
+            "provider": {
+              "@id": "https://malavar.mx/#business"
+            },
+            "areaServed": [
+              {
+                "@type": "AdministrativeArea",
+                "name": "Morelos"
+              },
+              {
+                "@type": "City",
+                "name": "Cuernavaca"
+              },
+              {
+                "@type": "City",
+                "name": "Ciudad de México"
+              },
+              {
+                "@type": "Country",
+                "name": "México"
+              }
+            ],
+            "availableChannel": {
+              "@type": "ServiceChannel",
+              "servicePhone": "+52 55 2212 1359",
+              "serviceUrl": "https://malavar.mx/#contacto"
+            }
+          },
+          {
+            "@type": "Car",
+            "@id": "https://malavar.mx/#cadillac-escalade",
+            "name": "Cadillac Escalade",
+            "brand": {
+              "@type": "Brand",
+              "name": "Cadillac"
+            },
+            "model": "Escalade",
+            "vehicleSeatingCapacity": {
+              "@type": "QuantitativeValue",
+              "value": 6,
+              "unitText": "pasajeros"
+            },
+            "description": "SUV de tamaño completo con chofer para traslados ejecutivos, recepción en aeropuerto y producción audiovisual.",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "MXN",
+              "seller": {
+                "@id": "https://malavar.mx/#business"
+              },
+              "areaServed": [
+                {
+                  "@type": "AdministrativeArea",
+                  "name": "Morelos"
+                },
+                {
+                  "@type": "City",
+                  "name": "Cuernavaca"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ciudad de México"
+                },
+                {
+                  "@type": "Country",
+                  "name": "México"
+                }
+              ],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renta de Cadillac Escalade con chofer"
+              }
+            }
+          },
+          {
+            "@type": "Car",
+            "@id": "https://malavar.mx/#gmc-yukon",
+            "name": "GMC Yukon",
+            "brand": {
+              "@type": "Brand",
+              "name": "GMC"
+            },
+            "model": "Yukon",
+            "vehicleSeatingCapacity": {
+              "@type": "QuantitativeValue",
+              "value": 7,
+              "unitText": "pasajeros"
+            },
+            "description": "SUV de tamaño completo con chofer, equilibrio entre presencia y capacidad de equipaje para agendas ejecutivas.",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "MXN",
+              "seller": {
+                "@id": "https://malavar.mx/#business"
+              },
+              "areaServed": [
+                {
+                  "@type": "AdministrativeArea",
+                  "name": "Morelos"
+                },
+                {
+                  "@type": "City",
+                  "name": "Cuernavaca"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ciudad de México"
+                },
+                {
+                  "@type": "Country",
+                  "name": "México"
+                }
+              ],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renta de GMC Yukon con chofer"
+              }
+            }
+          },
+          {
+            "@type": "Car",
+            "@id": "https://malavar.mx/#chevrolet-suburban",
+            "name": "Chevrolet Suburban",
+            "brand": {
+              "@type": "Brand",
+              "name": "Chevrolet"
+            },
+            "model": "Suburban",
+            "vehicleSeatingCapacity": {
+              "@type": "QuantitativeValue",
+              "value": 7,
+              "unitText": "pasajeros"
+            },
+            "description": "SUV con la mayor capacidad de carga de la flota, para grupos con equipaje de viaje y trayectos largos de carretera.",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "MXN",
+              "seller": {
+                "@id": "https://malavar.mx/#business"
+              },
+              "areaServed": [
+                {
+                  "@type": "AdministrativeArea",
+                  "name": "Morelos"
+                },
+                {
+                  "@type": "City",
+                  "name": "Cuernavaca"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ciudad de México"
+                },
+                {
+                  "@type": "Country",
+                  "name": "México"
+                }
+              ],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renta de Chevrolet Suburban con chofer"
+              }
+            }
+          },
+          {
+            "@type": "Car",
+            "@id": "https://malavar.mx/#toyota-hiace",
+            "name": "Toyota Hiace",
+            "brand": {
+              "@type": "Brand",
+              "name": "Toyota"
+            },
+            "model": "Hiace",
+            "vehicleSeatingCapacity": {
+              "@type": "QuantitativeValue",
+              "value": 12,
+              "unitText": "pasajeros"
+            },
+            "description": "Unidad de transporte grupal con chofer y zona de equipaje independiente, para equipos de producción y grupos completos.",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "MXN",
+              "seller": {
+                "@id": "https://malavar.mx/#business"
+              },
+              "areaServed": [
+                {
+                  "@type": "AdministrativeArea",
+                  "name": "Morelos"
+                },
+                {
+                  "@type": "City",
+                  "name": "Cuernavaca"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ciudad de México"
+                },
+                {
+                  "@type": "Country",
+                  "name": "México"
+                }
+              ],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renta de Toyota Hiace con chofer"
+              }
+            }
+          },
+          {
+            "@type": "Car",
+            "@id": "https://malavar.mx/#suvs-compactas",
+            "name": "SUVs compactas",
+            "brand": {
+              "@type": "Brand",
+              "name": "Malavar Mx"
+            },
+            "model": "Honda HR-V Touring · Kia Seltos · Kia Niro",
+            "vehicleSeatingCapacity": {
+              "@type": "QuantitativeValue",
+              "value": 5,
+              "unitText": "pasajeros"
+            },
+            "description": "SUV compactas con chofer para recorridos urbanos con varias paradas y traslados de uno a cinco pasajeros.",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "MXN",
+              "seller": {
+                "@id": "https://malavar.mx/#business"
+              },
+              "areaServed": [
+                {
+                  "@type": "AdministrativeArea",
+                  "name": "Morelos"
+                },
+                {
+                  "@type": "City",
+                  "name": "Cuernavaca"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ciudad de México"
+                },
+                {
+                  "@type": "Country",
+                  "name": "México"
+                }
+              ],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renta de SUVs compactas con chofer"
+              }
+            }
+          },
+          {
+            "@type": "Car",
+            "@id": "https://malavar.mx/#van-ejecutiva",
+            "name": "Van Ejecutiva",
+            "brand": {
+              "@type": "Brand",
+              "name": "Malavar Mx"
+            },
+            "model": "Van Ejecutiva",
+            "vehicleSeatingCapacity": {
+              "@type": "QuantitativeValue",
+              "value": 12,
+              "unitText": "pasajeros"
+            },
+            "description": "Van con chofer para grupos medianos, logística de eventos e itinerarios con paradas encadenadas.",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "MXN",
+              "seller": {
+                "@id": "https://malavar.mx/#business"
+              },
+              "areaServed": [
+                {
+                  "@type": "AdministrativeArea",
+                  "name": "Morelos"
+                },
+                {
+                  "@type": "City",
+                  "name": "Cuernavaca"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ciudad de México"
+                },
+                {
+                  "@type": "Country",
+                  "name": "México"
+                }
+              ],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Renta de Van Ejecutiva con chofer"
+              }
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://malavar.mx/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cuánto cuesta rentar una camioneta de lujo con chofer en Morelos?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El precio depende de tres variables: la unidad, la duración y la ruta. Un traslado sencillo dentro de Cuernavaca no se cotiza igual que un viaje redondo a la Ciudad de México o una jornada completa a disposición. Trabajamos tres modalidades: por trayecto, por bloque de horas y por día completo, y en todos los casos la tarifa ya incluye chofer, combustible y casetas del itinerario acordado. No manejamos tarifario público porque la mayoría de los servicios llevan paradas intermedias o tiempos de espera que cambian el cálculo. Comparte fecha, destino y número de pasajeros por WhatsApp o con el formulario de esta página y devolvemos una propuesta cerrada, sin cargos variables posteriores."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué incluye el servicio de traslado ejecutivo?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Incluye la unidad, el chofer asignado, el combustible y las casetas del itinerario acordado. Antes de la fecha confirmamos punto de encuentro, hora de recogida y ruta, y el chofer se presenta con margen sobre la hora pactada. En traslados de aeropuerto damos seguimiento al número de vuelo, de modo que un retraso en el arribo no genera un cargo adicional ni obliga a recotizar. Durante jornadas contratadas por horas, el vehículo y el chofer permanecen a disposición del grupo entre paradas, sin necesidad de contratar cada tramo por separado. Lo que no está incluido son los gastos ajenos al trayecto, como estacionamientos en destino o pernocta del chofer en servicios foráneos de varios días, que se acuerdan por anticipado."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cuántos pasajeros caben en cada unidad de la flota?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La flota cubre de cinco a doce pasajeros. Las SUV compactas —Honda HR-V Touring, Kia Seltos y Kia Niro— acomodan hasta cinco personas con equipaje de cabina. La Cadillac Escalade acomoda hasta seis con holgura. La GMC Yukon y la Chevrolet Suburban llegan a siete pasajeros, y la Suburban es la que conserva más cajuela útil con las tres filas ocupadas. La Van Ejecutiva cubre grupos medianos con acceso rápido de entrada y salida. La Toyota Hiace es la de mayor capacidad, con hasta doce pasajeros y zona de equipaje independiente al fondo. Cuando un grupo supera esos números, combinamos varias unidades en una misma logística y coordinamos las salidas para que lleguen juntas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Hacen traslados del aeropuerto de la Ciudad de México a Cuernavaca?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí. El corredor entre el Aeropuerto Internacional Benito Juárez y Cuernavaca es una de nuestras rutas habituales, en ambos sentidos. El chofer espera en el área de llegadas con identificación del pasajero y damos seguimiento al número de vuelo para ajustar la hora de recogida si el arribo se adelanta o se retrasa. Para vuelos internacionales contemplamos el tiempo de migración y aduana dentro de la espera incluida. También cubrimos el Aeropuerto Internacional Felipe Ángeles y los traslados entre terminales cuando hay conexión con cambio de aeropuerto. Recomendamos reservar este servicio con al menos veinticuatro horas de anticipación, sobre todo en salidas de madrugada, que es cuando la disponibilidad se cierra antes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Con cuánta anticipación hay que reservar?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Para un traslado sencillo, veinticuatro horas suele ser suficiente. Para jornadas completas, eventos con varias unidades o servicios foráneos de varios días, conviene reservar con una o dos semanas, porque implican bloquear unidad y chofer durante todo el periodo. Las fechas de temporada alta —puentes, diciembre, temporada de bodas— se cierran con bastante más antelación, igual que los servicios de madrugada al aeropuerto. Atendemos solicitudes las veinticuatro horas del día, todos los días del año, así que una reservación de último momento siempre se puede consultar: si hay unidad disponible, la confirmamos en el momento. Lo que no podemos garantizar sin anticipación es una unidad específica de la flota."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Trabajan con producciones audiovisuales?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Es una parte central de nuestra operación. Doce productoras con operación en México trabajan con Malavar Mx, entre ellas Landia, Stink, The Maestros, Habitant y Mamá Húngara. Para producción entendemos las condiciones del set: llamados de madrugada, cambios de locación durante la jornada, tiempos muertos largos en los que la unidad debe permanecer disponible, y la discreción que exige mover talento. Contratamos por jornada o por bloque de días, con el chofer asignado al proyecto durante todo el periodo, no por trayecto. La Toyota Hiace y la Van Ejecutiva cubren el movimiento de equipo humano; las SUV de tamaño completo se usan para talento y dirección. Coordinamos directamente con producción o con el coordinador de transporte."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Todos los servicios incluyen chofer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí. Malavar Mx no ofrece renta de vehículo sin conductor: todas las unidades se entregan con chofer, sin excepción. Es una decisión de operación, no una limitación de disponibilidad. El chofer conoce las rutas entre Morelos y la Ciudad de México, los accesos a los aeropuertos y los tiempos reales de cada tramo según la hora del día, que es justo lo que convierte un traslado en un servicio y no en un alquiler. También permite que el vehículo permanezca a disposición del grupo durante los tiempos de espera, sin que nadie tenga que ocuparse de estacionamiento o de maniobras en zonas complicadas. En jornadas largas o servicios de varios días asignamos el mismo chofer a todo el periodo."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿En qué zonas operan?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nuestra base está en Morelos y operamos de forma habitual en todo el estado y en la Ciudad de México, con el corredor Cuernavaca–CDMX como ruta principal. Cubrimos los dos aeropuertos de la zona metropolitana: el Internacional Benito Juárez y el Felipe Ángeles. Para servicios foráneos salimos a destinos fuera de esas zonas —recorridos de varios días, scouting, rutas turísticas privadas— cotizados por jornada e incluyendo los gastos de carretera del itinerario. Si tu traslado empieza o termina fuera de Morelos y la Ciudad de México, consúltalo igualmente: la mayoría de las rutas del centro del país son viables, y lo que cambia es la modalidad de cotización, no la disponibilidad del servicio."
+                }
+              }
+            ],
+            "isPartOf": {
+              "@id": "https://malavar.mx/#webpage"
+            }
           }
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+52 55 2212 1359",
-          "contactType": "reservations",
-          "areaServed": "MX",
-          "availableLanguage": "Spanish"
-        }
+        ]
       }
     </script>
+    <link rel="preload" as="image" href="assets/posters/hero-el-viaje.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/nueva-portada.webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Josefin+Sans:wght@300;400&family=Michroma&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
@@ -75,13 +673,13 @@
     <link rel="stylesheet" href="experience.css" />
     <link rel="stylesheet" href="intro-override.css" />
     <link rel="stylesheet" href="clients-gallery.css" />
-    <link rel="stylesheet" href="reference-style.css?v=20260903-6" />
-    <link rel="stylesheet" href="clients-swiper.css?v=20260903-6" />
+    <link rel="stylesheet" href="reference-style.css?v=20260903-9" />
+    <link rel="stylesheet" href="clients-swiper.css?v=20260903-9" />
   </head>
   <body>
     <div class="intro" aria-hidden="true">
       <div class="intro-logo">
-        <img src="assets/malavar-intro-logo.png" alt="Malavar Mx" />
+        <img src="assets/malavar-intro-logo.webp" alt="Malavar Mx" width="640" height="640" decoding="async" loading="eager" fetchpriority="high" />
       </div>
     </div>
 
@@ -95,92 +693,97 @@
     </header>
 
     <main>
-      <section class="fleet-opening" aria-label="Flota Malavar Mx">
-        <img src="assets/nueva-portada.png" alt="Flota de camionetas Malavar Mx" />
+      <section class="fleet-opening scene" aria-label="Flota Malavar Mx">
+        <img src="assets/nueva-portada.webp" alt="Flota de camionetas de lujo Malavar Mx para traslados ejecutivos en Morelos y la Ciudad de México" width="1672" height="941" decoding="async" loading="eager" fetchpriority="high" />
         <div><p>Malavar Mx</p><span>Movilidad que deja huella</span></div>
       </section>
-      <section class="hero" id="inicio">
+      <section class="hero scene" id="inicio">
         <div class="hero-copy reveal">
           <p class="eyebrow">Traslados privados · Morelos & México</p>
           <h1 class="value-heading">El viaje<br /><em>empieza antes</em><br />de llegar.</h1>
           <p class="hero-text">Camionetas de lujo y atención impecable para cada momento que merece una llegada extraordinaria.</p>
+          <p class="hero-posicionamiento"><strong>Malavar Mx</strong> es un servicio de renta de camionetas de lujo con chofer en Morelos y la Ciudad de México. Operamos seis unidades premium —Cadillac Escalade, GMC Yukon, Chevrolet Suburban, Toyota Hiace, Van Ejecutiva y SUVs compactas— para traslados ejecutivos, eventos y rutas privadas de 5 a 12 pasajeros.</p>
           <a class="button" href="#contacto">Solicitar cotización <i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></a>
         </div>
         <div class="hero-image">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="Video de la flota de Malavar Mx">
-            <source src="assets/hero-el-viaje.mp4" type="video/mp4" />
+          <video autoplay muted loop playsinline preload="auto" width="864" height="864"
+                 poster="assets/posters/hero-el-viaje.webp" aria-label="Video de la flota de Malavar Mx">
+            <source src="assets/video/hero-el-viaje.mp4" type="video/mp4" />
             Tu navegador no puede reproducir este video.
           </video>
         </div>
         <a class="scroll-prompt" href="#flota"><span></span> Explorar flota</a>
       </section>
 
-      <section class="statement statement-showcase section-pad" id="nosotros">
-        <div class="statement-gallery" aria-hidden="true">
-          <img src="assets/statement-fleet/yukon-front.png" alt="" />
-          <img src="assets/statement-fleet/yukon-angle.png" alt="" />
-          <img src="assets/statement-fleet/yukon-rear.png" alt="" />
-          <img src="assets/statement-fleet/suburban-front.png" alt="" />
-          <img src="assets/statement-fleet/suburban-angle.png" alt="" />
-          <img src="assets/statement-fleet/suburban-rear.png" alt="" />
+      <section class="statement statement-showcase section-pad scene" id="nosotros">
+        <div class="statement-gallery">
+          <img src="assets/statement-fleet/yukon-front.webp" alt="GMC Yukon y Chevrolet Suburban de la flota Malavar Mx en Morelos" width="1200" height="676" decoding="async" loading="eager" />
+          <img src="assets/statement-fleet/yukon-angle.webp" alt="" width="1200" height="900" decoding="async" loading="lazy" />
+          <img src="assets/statement-fleet/yukon-rear.webp" alt="" width="1200" height="900" decoding="async" loading="lazy" />
+          <img src="assets/statement-fleet/suburban-front.webp" alt="" width="1200" height="676" decoding="async" loading="lazy" />
+          <img src="assets/statement-fleet/suburban-angle.webp" alt="" width="1200" height="800" decoding="async" loading="lazy" />
+          <img src="assets/statement-fleet/suburban-rear.webp" alt="" width="1200" height="676" decoding="async" loading="lazy" />
         </div>
         <div class="statement-panel">
           <p class="eyebrow reveal">La diferencia Malavar Mx</p>
           <div class="statement-grid">
             <h2 class="reveal value-heading">Elegancia que<br />se <em>mueve contigo.</em></h2>
-            <div class="reveal delayed"><p>En Malavar Mx creemos que el traslado es parte de la experiencia. Nuestra flota premium, el servicio personalizado y una ejecución puntual se unen para llevarte con total confianza.</p><a class="text-link" href="#servicios">Conoce nuestros servicios <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
+            <div class="reveal delayed"><p>En Malavar Mx creemos que el traslado es parte de la experiencia, no el trámite que la antecede. Trabajamos con una flota propia de seis unidades premium y un equipo de choferes que conoce las rutas entre Morelos y la Ciudad de México: el corredor Cuernavaca–CDMX, los accesos al Aeropuerto Internacional Benito Juárez y los tiempos reales de cada tramo según la hora.</p><p>Cada servicio se coordina con antelación: confirmamos itinerario, punto de encuentro y número de pasajeros antes de la fecha, y el chofer asignado se mantiene disponible durante toda la jornada contratada. Atendemos reservaciones las 24 horas, todos los días del año, porque los vuelos y los rodajes no respetan el horario de oficina. Es el mismo estándar que aplicamos lo mismo a un traslado de aeropuerto que a una producción de varios días.</p><a class="text-link" href="#servicios">Conoce nuestros servicios <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
           </div>
         </div>
       </section>
 
-      <section class="fleet" id="flota">
+      <section class="fleet scene" id="flota">
         <div class="section-pad fleet-heading reveal"><p class="eyebrow">Nuestra flota</p><h2 class="value-heading">Diseñada para<br /><em>hacer presencia.</em></h2></div>
         <article class="vehicle vehicle-cadillac">
-          <div class="vehicle-info reveal"><p class="vehicle-no">01 / SUVs premium</p><h3>Cadillac<br />Escalade</h3><p>Una presencia inconfundible para recibir a tus invitados, acompañar una producción o elevar cualquier recorrido.</p><ul><li>Hasta 6 pasajeros</li><li>Interior premium</li><li>Servicio discreto</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
+          <div class="vehicle-info reveal"><p class="vehicle-no">01 / SUVs premium</p><h3>Cadillac<br />Escalade</h3><p>La Cadillac Escalade es la SUV de tamaño completo con la que atendemos los traslados donde la llegada pesa tanto como el destino. Su cabina acomoda con holgura a seis pasajeros con equipaje de mano, y la tercera fila se abate para liberar carga cuando el grupo viaja ligero. La usamos sobre todo para recibir directivos y talento en el Aeropuerto Internacional de la Ciudad de México, para acompañar rodajes que necesitan una unidad de imagen y para eventos donde el vehículo forma parte de la escena. Siempre se entrega con chofer. Se cotiza por trayecto, por jornada de horas o por bloque de días.</p><ul><li>Hasta 6 pasajeros</li><li>Interior premium</li><li>Servicio discreto</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
           <div class="vehicle-video">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="Video de la Cadillac Escalade de Malavar Mx">
-              <source src="assets/cadillac.mp4" type="video/mp4" />
+            <video muted loop playsinline preload="none" width="1152" height="648"
+                   poster="assets/posters/cadillac.webp" data-src="assets/video/cadillac.mp4"
+                   aria-label="Video de la Cadillac Escalade de Malavar Mx">
               Tu navegador no puede reproducir este video.
             </video>
             <p>Cadillac Escalade · Experiencia Malavar Mx</p>
           </div>
         </article>
         <article class="vehicle vehicle-yukon">
-          <div class="vehicle-info reveal"><p class="vehicle-no">02 / SUVs premium</p><h3>GMC<br />Yukon</h3><p>Presencia, amplitud y comodidad para traslados ejecutivos que exigen una llegada a la altura de cada ocasión.</p><ul><li>Hasta 7 pasajeros</li><li>Cabina amplia y confortable</li><li>Servicio con chofer</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
+          <div class="vehicle-info reveal"><p class="vehicle-no">02 / SUVs premium</p><h3>GMC<br />Yukon</h3><p>La GMC Yukon es nuestra unidad de equilibrio: la presencia de una SUV de tamaño completo con una cabina que reparte mejor el espacio entre pasajeros y equipaje. Acomoda hasta siete personas y admite maletas de documentar sin sacrificar la tercera fila, lo que la vuelve la opción natural para traslados de aeropuerto con grupo completo. Es la unidad que más rota en agendas ejecutivas de varios puntos al día, porque entra y sale con facilidad de estacionamientos de oficina y de hotel. Se entrega con chofer y se coordina con itinerario cerrado o por horas, con espera incluida entre paradas.</p><ul><li>Hasta 7 pasajeros</li><li>Cabina amplia y confortable</li><li>Servicio con chofer</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
           <div class="vehicle-video">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="Video de la GMC Yukon de Malavar Mx">
-              <source src="assets/gmc-yukon.mp4" type="video/mp4" />
+            <video muted loop playsinline preload="none" width="1152" height="648"
+                   poster="assets/posters/gmc-yukon.webp" data-src="assets/video/gmc-yukon.mp4"
+                   aria-label="Video de la GMC Yukon de Malavar Mx">
               Tu navegador no puede reproducir este video.
             </video>
             <p>GMC Yukon · Experiencia Malavar Mx</p>
           </div>
         </article>
         <article class="vehicle vehicle-suburban">
-          <div class="vehicle-info reveal"><p class="vehicle-no">03 / SUVs ejecutivas</p><h3>Chevrolet<br />Suburban</h3><p>Espacio, porte y confort para grupos que no aceptan menos. Ideal para traslados ejecutivos y experiencias privadas.</p><ul><li>Hasta 7 pasajeros</li><li>Equipaje amplio</li><li>Con chofer</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
+          <div class="vehicle-info reveal"><p class="vehicle-no">03 / SUVs ejecutivas</p><h3>Chevrolet<br />Suburban</h3><p>La Chevrolet Suburban es la unidad de mayor capacidad de carga de nuestras SUV. Acomoda hasta siete pasajeros y conserva cajuela útil con las tres filas en uso, que es exactamente lo que se necesita en un traslado Cuernavaca–CDMX con equipaje de viaje o en una producción que mueve equipo ligero junto al equipo humano. Es también la que mejor resiste jornadas largas de carretera por comodidad de suspensión y aislamiento de cabina. Se entrega con chofer, y admite contratación por jornada completa cuando el itinerario incluye varios destinos o tiempos de espera prolongados entre paradas.</p><ul><li>Hasta 7 pasajeros</li><li>Equipaje amplio</li><li>Con chofer</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
           <div class="vehicle-video">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="Video de la Chevrolet Suburban de Malavar Mx">
-              <source src="assets/suburban.mp4" type="video/mp4" />
+            <video muted loop playsinline preload="none" width="1152" height="648"
+                   poster="assets/posters/suburban.webp" data-src="assets/video/suburban.mp4"
+                   aria-label="Video de la Chevrolet Suburban de Malavar Mx">
               Tu navegador no puede reproducir este video.
             </video>
             <p>Chevrolet Suburban · Experiencia Malavar Mx</p>
           </div>
         </article>
         <article class="vehicle vehicle-red vehicle-van-express vehicle-hiace">
-          <div class="van-gallery hiace-gallery" aria-hidden="true">
-            <img src="assets/toyota-hiace/hiace-front.png" alt="" />
-            <img src="assets/toyota-hiace/hiace-front-angle.png" alt="" />
-            <img src="assets/toyota-hiace/hiace-rear.png" alt="" />
-            <img src="assets/toyota-hiace/hiace-side.png" alt="" />
+          <div class="van-gallery hiace-gallery">
+            <img src="assets/toyota-hiace/hiace-front.webp" alt="Toyota Hiace de Malavar Mx para transporte grupal de hasta 12 pasajeros" width="900" height="1200" decoding="async" loading="eager" />
+            <img src="assets/toyota-hiace/hiace-front-angle.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/toyota-hiace/hiace-rear.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/toyota-hiace/hiace-side.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
           </div>
-          <div class="vehicle-info reveal"><p class="vehicle-no">04 / Transporte grupal</p><h3>Toyota<br />Hiace</h3><p>Espacio y practicidad para equipos, familias y recorridos que necesitan moverse juntos con comodidad.</p><ul><li>Hasta 12 pasajeros</li><li>Amplio espacio interior</li><li>Traslados flexibles</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
+          <div class="vehicle-info reveal"><p class="vehicle-no">04 / Transporte grupal</p><h3>Toyota<br />Hiace</h3><p>La Toyota Hiace es la unidad con la que movemos grupos completos sin dividirlos en varios vehículos. Acomoda hasta doce pasajeros con acceso lateral corredizo y una zona de equipaje independiente al fondo, así que el grupo viaja junto y las maletas no ocupan asiento. Es la opción habitual para equipos de producción que se desplazan a locación, para traslados de invitados entre hotel y sede de evento, y para grupos familiares que hacen la ruta Morelos–Ciudad de México en un solo movimiento. Se entrega con chofer y se cotiza por trayecto o por jornada, con paradas intermedias coordinadas de antemano.</p><ul><li>Hasta 12 pasajeros</li><li>Amplio espacio interior</li><li>Traslados flexibles</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
         </article>
         <article class="vehicle vehicle-suvs" id="suvs">
-          <div class="suv-gallery" aria-hidden="true">
-            <img src="assets/suvs/honda-hrv-touring.png" alt="" />
-            <img src="assets/suvs/kia-seltos.png" alt="" />
-            <img src="assets/suvs/kia-niro.png" alt="" />
-            <img src="assets/suvs/suv-lineup.png" alt="" />
-            <img src="assets/suvs/suv-lineup-detail.png" alt="" />
+          <div class="suv-gallery">
+            <img src="assets/suvs/honda-hrv-touring.webp" alt="Honda HR-V Touring de la línea de SUVs compactas de Malavar Mx" width="1200" height="676" decoding="async" loading="eager" />
+            <img src="assets/suvs/kia-seltos.webp" alt="" width="1200" height="676" decoding="async" loading="lazy" />
+            <img src="assets/suvs/kia-niro.webp" alt="" width="1200" height="676" decoding="async" loading="lazy" />
+            <img src="assets/suvs/suv-lineup.webp" alt="" width="1200" height="676" decoding="async" loading="lazy" />
+            <img src="assets/suvs/suv-lineup-detail.webp" alt="" width="1200" height="676" decoding="async" loading="lazy" />
           </div>
           <div class="vehicle-info reveal">
             <p class="vehicle-no">05 / SUVs versátiles</p>
@@ -190,58 +793,58 @@
               <li>Kia Seltos</li>
               <li>Kia Niro</li>
             </ul>
-            <p>Confort, seguridad y estilo para moverte por la ciudad o escapar de ella con total libertad.</p>
+            <p>Las SUV compactas cubren los traslados donde una unidad de tamaño completo sobra: reuniones de uno o dos pasajeros, recorridos urbanos con varias paradas, o desplazamientos de varios días donde el consumo importa. Acomodan hasta cinco pasajeros con cajuela para equipaje de cabina, y su tamaño facilita el acceso al centro de Cuernavaca y a zonas de la Ciudad de México donde maniobrar una SUV grande cuesta tiempo. Se entregan con chofer, igual que el resto de la flota. Es la línea que solemos combinar con las unidades grandes cuando una comitiva necesita moverse en paralelo.</p>
             <ul class="suv-features"><li>Hasta 5 pasajeros</li><li>Confort y tecnología</li><li>Traslados con chofer</li></ul>
             <a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a>
           </div>
         </article>
         <article class="vehicle vehicle-red vehicle-van-express">
-          <div class="van-gallery" aria-hidden="true">
-            <img src="assets/van-express/gris/van-gray-front.png" alt="" />
-            <img src="assets/van-express/gris/van-gray-doors.png" alt="" />
-            <img src="assets/van-express/gris/van-gray-angle.png" alt="" />
-            <img src="assets/van-express/gris/van-gray-rear.png" alt="" />
-            <img src="assets/van-express/gris/van-gray-side-rear.png" alt="" />
-            <img src="assets/van-express/van-city-front.png" alt="" />
-            <img src="assets/van-express/van-city-doors.png" alt="" />
-            <img src="assets/van-express/van-city-rear-side.png" alt="" />
-            <img src="assets/van-express/van-city-rear.png" alt="" />
+          <div class="van-gallery">
+            <img src="assets/van-express/gris/van-gray-front.webp" alt="Van Ejecutiva de Malavar Mx para grupos y logística de eventos" width="900" height="1200" decoding="async" loading="eager" />
+            <img src="assets/van-express/gris/van-gray-doors.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/gris/van-gray-angle.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/gris/van-gray-rear.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/gris/van-gray-side-rear.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/van-city-front.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/van-city-doors.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/van-city-rear-side.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
+            <img src="assets/van-express/van-city-rear.webp" alt="" width="900" height="1200" decoding="async" loading="lazy" />
           </div>
-          <div class="vehicle-info reveal"><p class="vehicle-no">06 / Grupos y eventos</p><h3>Van<br />Ejecutiva</h3><p>La solución ágil y cómoda para equipos, familias, eventos y traslados coordinados con el mismo sello Malavar Mx.</p><ul><li>Grupos medianos</li><li>Traslados flexibles</li><li>Logística a medida</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
+          <div class="vehicle-info reveal"><p class="vehicle-no">06 / Grupos y eventos</p><h3>Van<br />Ejecutiva</h3><p>La Van Ejecutiva es la unidad que coordina grupos medianos cuando el itinerario tiene varias paradas y horarios encadenados. Su configuración prioriza el acceso y la salida rápida de pasajeros, que es lo que hace la diferencia en una boda, un congreso o una jornada de rodaje con cambios de locación. Admite equipaje de grupo en la zona posterior y permite trabajar durante el trayecto. La usamos con frecuencia en logística de eventos, donde una sola unidad hace rondas continuas entre hotel, sede y punto de salida. Se entrega con chofer y se contrata por jornada o por bloque de horas.</p><ul><li>Grupos medianos</li><li>Traslados flexibles</li><li>Logística a medida</li></ul><a class="text-link light" href="#contacto">Cotizar esta unidad <i class="fa-solid fa-arrow-right ui-arrow" aria-hidden="true"></i></a></div>
         </article>
       </section>
 
-      <section class="services section-pad" id="servicios">
+      <section class="services section-pad scene" id="servicios">
         <div class="services-intro reveal"><p class="eyebrow">Servicios a la medida</p><h2 class="gmc-heading-type">Todo bajo<br /><em>control.</em></h2></div>
         <div class="service-list">
-          <article class="service reveal"><span>01</span><div><h3>Traslados ejecutivos</h3><p>Puntualidad, privacidad y una experiencia a la altura de tu agenda.</p></div><i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></article>
-          <article class="service reveal"><span>02</span><div><h3>Eventos y celebraciones</h3><p>Movilidad coordinada para que tus invitados sólo se ocupen de disfrutar.</p></div><i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></article>
-          <article class="service reveal"><span>03</span><div><h3>Rutas privadas</h3><p>Itinerarios personalizados, por horas, día completo o destinos especiales.</p></div><i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></article>
+          <article class="service reveal"><span>01</span><div><h3>Traslados ejecutivos</h3><p>El traslado ejecutivo cubre el desplazamiento de directivos, clientes e invitados con chofer asignado y horario cerrado. Confirmamos punto de encuentro, ruta y hora de recogida antes de la fecha, y el chofer llega con margen sobre la hora acordada. Incluye espera en aeropuerto con seguimiento del número de vuelo, de modo que un retraso no obliga a recotizar el servicio. Trabajamos el corredor Cuernavaca–Ciudad de México y los traslados al Aeropuerto Internacional Benito Juárez, además de recorridos urbanos con varias paradas. Se contrata por trayecto sencillo, por viaje redondo o por jornada de horas cuando la agenda del día tiene destinos encadenados.</p></div><i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></article>
+          <article class="service reveal"><span>02</span><div><h3>Eventos y celebraciones</h3><p>En eventos coordinamos el movimiento completo de los asistentes: rondas entre hotel y sede, recogidas escalonadas por horario y salidas al cierre. Para bodas, congresos y celebraciones privadas asignamos las unidades según el tamaño de cada grupo y definimos contigo una hoja de ruta con horas y puntos exactos, para que nadie tenga que coordinar transporte durante el evento. Una sola Van Ejecutiva o Toyota Hiace puede hacer rondas continuas, o combinamos varias unidades cuando los invitados llegan de distintos puntos. Se cotiza por jornada completa, y ajustamos el número de unidades una vez confirmado el aforo definitivo.</p></div><i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></article>
+          <article class="service reveal"><span>03</span><div><h3>Rutas privadas</h3><p>Las rutas privadas son servicios a medida donde tú defines el itinerario: recorridos de varios días, escapadas a destinos de Morelos, jornadas de scouting o rodaje con cambios de locación, y traslados foráneos con paradas intermedias. El chofer queda asignado a tu grupo durante todo el bloque contratado, incluidos los tiempos de espera entre destinos, así que el vehículo permanece disponible sin necesidad de recontratar en cada tramo. Es la modalidad que usan con más frecuencia las productoras audiovisuales con las que trabajamos. Se contrata por bloque de horas, por jornada completa o por número de días.</p></div><i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></article>
         </div>
       </section>
 
-      <section class="clients section-pad" id="clientes">
+      <section class="clients section-pad scene" id="clientes">
         <div class="clients-layout">
           <div class="clients-heading reveal">
             <p class="eyebrow">Relaciones que nos impulsan</p>
             <h2 class="gmc-heading-type">Nuestros<br /><em>clientes.</em></h2>
-            <p class="clients-description">Productoras y equipos que confían en Malavar Mx para llegar con precisión, presencia y total discreción.</p>
+            <p class="clients-description">Doce productoras audiovisuales con operación en México confían en Malavar Mx para mover equipo y talento: llegar con precisión a locación, sostener jornadas largas de rodaje y mantener la discreción que exige un set. Es el sector donde más horas de servicio acumulamos.</p>
           </div>
           <div class="clients-swiper-shell reveal delayed">
             <div class="clients-swiper swiper" aria-label="Clientes de Malavar Mx">
               <div class="swiper-wrapper">
-                <a class="swiper-slide" href="https://www.landia.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/landia.png" alt="Landia" /></a>
-                <a class="swiper-slide" href="https://stinkfilms.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/stink.png" alt="Stink" /></a>
-                <a class="swiper-slide" href="https://themaestros.tv/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/the-maestros.png" alt="The Maestros" /></a>
-                <a class="swiper-slide" href="https://habitantproductions.com/home/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/habitant.png" alt="Habitant" /></a>
-                <a class="swiper-slide" href="https://casaxraiz.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/casa-raiz.png" alt="Casa Raíz" /></a>
-                <a class="swiper-slide" href="https://www.storyweproduce.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/story.png" alt="Story" /></a>
-                <a class="swiper-slide" href="https://orugacine.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oruga.png" alt="Oruga" /></a>
-                <a class="swiper-slide" href="http://fightfilms.la/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/fight-films.png" alt="Fight Films" /></a>
-                <a class="swiper-slide" href="https://mamahungara.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/mama-hungara.png" alt="Mamá Húngara" /></a>
-                <a class="swiper-slide" href="https://www.wemonsters.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/we-monster.png" alt="We Monster" /></a>
-                <a class="swiper-slide" href="https://tercio.mx/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/terciopelo.png" alt="Terciopelo" /></a>
-                <a class="swiper-slide" href="https://produccionesoxigeno.es/oficinas/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oxigeno.png" alt="Oxígeno" /></a>
+                <a class="swiper-slide" href="https://www.landia.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/landia.webp" alt="Landia" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://stinkfilms.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/stink.webp" alt="Stink" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://themaestros.tv/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/the-maestros.webp" alt="The Maestros" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://habitantproductions.com/home/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/habitant.webp" alt="Habitant" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://casaxraiz.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/casa-raiz.webp" alt="Casa Raíz" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://www.storyweproduce.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/story.webp" alt="Story" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://orugacine.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oruga.webp" alt="Oruga" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="http://fightfilms.la/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/fight-films.webp" alt="Fight Films" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://mamahungara.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/mama-hungara.webp" alt="Mamá Húngara" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://www.wemonsters.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/we-monster.webp" alt="We Monster" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://tercio.mx/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/terciopelo.webp" alt="Terciopelo" width="400" height="100" decoding="async" loading="lazy" /></a>
+                <a class="swiper-slide" href="https://produccionesoxigeno.es/oficinas/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oxigeno.webp" alt="Oxígeno" width="400" height="100" decoding="async" loading="lazy" /></a>
               </div>
             </div>
             <div class="clients-swiper-pagination"></div>
@@ -249,7 +852,50 @@
         </div>
       </section>
 
-      <section class="contact" id="contacto">
+
+      <section class="faq section-pad scene" id="preguntas">
+        <div class="faq-intro reveal">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 class="gmc-heading-type">Lo que suelen<br /><em>preguntarnos.</em></h2>
+          <p class="faq-description">Las dudas que más se repiten antes de cerrar una reservación. Si la tuya no está aquí, escríbenos por WhatsApp y te respondemos el mismo día.</p>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item reveal">
+            <h3>¿Cuánto cuesta rentar una camioneta de lujo con chofer en Morelos?</h3>
+            <p>El precio depende de tres variables: la unidad, la duración y la ruta. Un traslado sencillo dentro de Cuernavaca no se cotiza igual que un viaje redondo a la Ciudad de México o una jornada completa a disposición. Trabajamos tres modalidades: por trayecto, por bloque de horas y por día completo, y en todos los casos la tarifa ya incluye chofer, combustible y casetas del itinerario acordado. No manejamos tarifario público porque la mayoría de los servicios llevan paradas intermedias o tiempos de espera que cambian el cálculo. Comparte fecha, destino y número de pasajeros por WhatsApp o con el formulario de esta página y devolvemos una propuesta cerrada, sin cargos variables posteriores.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿Qué incluye el servicio de traslado ejecutivo?</h3>
+            <p>Incluye la unidad, el chofer asignado, el combustible y las casetas del itinerario acordado. Antes de la fecha confirmamos punto de encuentro, hora de recogida y ruta, y el chofer se presenta con margen sobre la hora pactada. En traslados de aeropuerto damos seguimiento al número de vuelo, de modo que un retraso en el arribo no genera un cargo adicional ni obliga a recotizar. Durante jornadas contratadas por horas, el vehículo y el chofer permanecen a disposición del grupo entre paradas, sin necesidad de contratar cada tramo por separado. Lo que no está incluido son los gastos ajenos al trayecto, como estacionamientos en destino o pernocta del chofer en servicios foráneos de varios días, que se acuerdan por anticipado.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿Cuántos pasajeros caben en cada unidad de la flota?</h3>
+            <p>La flota cubre de cinco a doce pasajeros. Las SUV compactas —Honda HR-V Touring, Kia Seltos y Kia Niro— acomodan hasta cinco personas con equipaje de cabina. La Cadillac Escalade acomoda hasta seis con holgura. La GMC Yukon y la Chevrolet Suburban llegan a siete pasajeros, y la Suburban es la que conserva más cajuela útil con las tres filas ocupadas. La Van Ejecutiva cubre grupos medianos con acceso rápido de entrada y salida. La Toyota Hiace es la de mayor capacidad, con hasta doce pasajeros y zona de equipaje independiente al fondo. Cuando un grupo supera esos números, combinamos varias unidades en una misma logística y coordinamos las salidas para que lleguen juntas.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿Hacen traslados del aeropuerto de la Ciudad de México a Cuernavaca?</h3>
+            <p>Sí. El corredor entre el Aeropuerto Internacional Benito Juárez y Cuernavaca es una de nuestras rutas habituales, en ambos sentidos. El chofer espera en el área de llegadas con identificación del pasajero y damos seguimiento al número de vuelo para ajustar la hora de recogida si el arribo se adelanta o se retrasa. Para vuelos internacionales contemplamos el tiempo de migración y aduana dentro de la espera incluida. También cubrimos el Aeropuerto Internacional Felipe Ángeles y los traslados entre terminales cuando hay conexión con cambio de aeropuerto. Recomendamos reservar este servicio con al menos veinticuatro horas de anticipación, sobre todo en salidas de madrugada, que es cuando la disponibilidad se cierra antes.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿Con cuánta anticipación hay que reservar?</h3>
+            <p>Para un traslado sencillo, veinticuatro horas suele ser suficiente. Para jornadas completas, eventos con varias unidades o servicios foráneos de varios días, conviene reservar con una o dos semanas, porque implican bloquear unidad y chofer durante todo el periodo. Las fechas de temporada alta —puentes, diciembre, temporada de bodas— se cierran con bastante más antelación, igual que los servicios de madrugada al aeropuerto. Atendemos solicitudes las veinticuatro horas del día, todos los días del año, así que una reservación de último momento siempre se puede consultar: si hay unidad disponible, la confirmamos en el momento. Lo que no podemos garantizar sin anticipación es una unidad específica de la flota.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿Trabajan con producciones audiovisuales?</h3>
+            <p>Es una parte central de nuestra operación. Doce productoras con operación en México trabajan con Malavar Mx, entre ellas Landia, Stink, The Maestros, Habitant y Mamá Húngara. Para producción entendemos las condiciones del set: llamados de madrugada, cambios de locación durante la jornada, tiempos muertos largos en los que la unidad debe permanecer disponible, y la discreción que exige mover talento. Contratamos por jornada o por bloque de días, con el chofer asignado al proyecto durante todo el periodo, no por trayecto. La Toyota Hiace y la Van Ejecutiva cubren el movimiento de equipo humano; las SUV de tamaño completo se usan para talento y dirección. Coordinamos directamente con producción o con el coordinador de transporte.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿Todos los servicios incluyen chofer?</h3>
+            <p>Sí. Malavar Mx no ofrece renta de vehículo sin conductor: todas las unidades se entregan con chofer, sin excepción. Es una decisión de operación, no una limitación de disponibilidad. El chofer conoce las rutas entre Morelos y la Ciudad de México, los accesos a los aeropuertos y los tiempos reales de cada tramo según la hora del día, que es justo lo que convierte un traslado en un servicio y no en un alquiler. También permite que el vehículo permanezca a disposición del grupo durante los tiempos de espera, sin que nadie tenga que ocuparse de estacionamiento o de maniobras en zonas complicadas. En jornadas largas o servicios de varios días asignamos el mismo chofer a todo el periodo.</p>
+          </article>
+          <article class="faq-item reveal">
+            <h3>¿En qué zonas operan?</h3>
+            <p>Nuestra base está en Morelos y operamos de forma habitual en todo el estado y en la Ciudad de México, con el corredor Cuernavaca–CDMX como ruta principal. Cubrimos los dos aeropuertos de la zona metropolitana: el Internacional Benito Juárez y el Felipe Ángeles. Para servicios foráneos salimos a destinos fuera de esas zonas —recorridos de varios días, scouting, rutas turísticas privadas— cotizados por jornada e incluyendo los gastos de carretera del itinerario. Si tu traslado empieza o termina fuera de Morelos y la Ciudad de México, consúltalo igualmente: la mayoría de las rutas del centro del país son viables, y lo que cambia es la modalidad de cotización, no la disponibilidad del servicio.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact scene" id="contacto">
         <div class="contact-copy reveal"><p class="eyebrow">Reservaciones · Malavar Mx</p><h2 class="gmc-heading-type">Hablemos de tu<br /><em>próximo destino.</em></h2><p>Compártenos los detalles de tu traslado y prepararemos una propuesta personalizada.</p><a class="phone-link" href="tel:+525522121359">+52 55 2212 1359</a><a class="email-link" href="mailto:s.p.ejecutivo@gmail.com">s.p.ejecutivo@gmail.com</a><a class="button whatsapp-link" href="https://wa.me/525522121359" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></a></div>
         <form class="contact-form reveal delayed" action="mailto:s.p.ejecutivo@gmail.com" method="post" enctype="text/plain" data-recipient="s.p.ejecutivo@gmail.com">
           <label>Nombre<input required name="nombre" placeholder="Tu nombre" /></label>
@@ -260,6 +906,46 @@
         </form>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-marca">
+          <p class="footer-wordmark">MALAVAR <span>MX</span></p>
+          <p class="footer-claim">Renta de camionetas de lujo con chofer para traslados ejecutivos, eventos y rutas privadas en Morelos y la Ciudad de México.</p>
+        </div>
+        <div class="footer-bloque">
+          <h2>Contacto</h2>
+          <address>
+            <a href="tel:+525522121359">+52 55 2212 1359</a>
+            <a href="mailto:s.p.ejecutivo@gmail.com">s.p.ejecutivo@gmail.com</a>
+            <span>Morelos, México</span>
+          </address>
+          <p class="footer-horario">Reservaciones las 24 horas, todos los días</p>
+        </div>
+        <div class="footer-bloque">
+          <h2>Flota</h2>
+          <ul>
+            <li><a href="#flota">Cadillac Escalade</a></li>
+            <li><a href="#flota">GMC Yukon</a></li>
+            <li><a href="#flota">Chevrolet Suburban</a></li>
+            <li><a href="#flota">Toyota Hiace</a></li>
+            <li><a href="#suvs">SUVs compactas</a></li>
+            <li><a href="#flota">Van Ejecutiva</a></li>
+          </ul>
+        </div>
+        <div class="footer-bloque">
+          <h2>Servicios</h2>
+          <ul>
+            <li><a href="#servicios">Traslados ejecutivos</a></li>
+            <li><a href="#servicios">Eventos y celebraciones</a></li>
+            <li><a href="#servicios">Rutas privadas</a></li>
+            <li><a href="#clientes">Producción audiovisual</a></li>
+            <li><a href="#preguntas">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">© 2026 Malavar Mx · Movilidad que deja huella · Todos los servicios se prestan con chofer.</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11.2.6/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
   </body>

@@ -95,9 +95,12 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
-if (main) {
-  main.querySelectorAll('section').forEach((section) => section.classList.add('scene'));
-}
+/* La clase .scene se aplicaba aquí, después de cargar. Como styles.css le da
+   min-height: 100svh, cada sección crecía un viewport entero tras el primer
+   pintado y provocaba un CLS de 1.00 (medido con PerformanceObserver: el
+   desplazamiento salía de section#inicio.hero a los 71 ms). Ahora la clase
+   viaja en el HTML y la altura es correcta desde el primer cuadro.
+   `main` se conserva porque lo usan otros bloques de este archivo. */
 
 /* Clientes: carrusel de logotipos en tarjetas, con el titular centrado
    encima (formato tomado de la referencia que pasó el cliente).
@@ -142,4 +145,51 @@ if (clientsSwiperEl && typeof Swiper !== 'undefined') {
       paginationBulletMessage: 'Ir al grupo de logotipos {{index}}'
     }
   });
+}
+
+/* Vídeos de flota: carga bajo demanda.
+   Antes llevaban autoplay + preload="metadata", pero autoplay invalida esa
+   pista y el navegador se bajaba los cuatro archivos completos en la primera
+   navegación (21 MB medidos en el panel de red). Ahora el mp4 viaja en
+   data-src, el póster pinta el primer cuadro y el <source> se monta sólo
+   cuando la tarjeta se acerca al viewport.
+   El margen de 300 px da tiempo a que el vídeo esté listo al llegar. */
+const MARGEN_PRECARGA_VIDEO = '300px';
+
+const videosDiferidos = document.querySelectorAll('video[data-src]');
+
+if (videosDiferidos.length) {
+  const montarVideo = (video) => {
+    if (video.dataset.montado) return;
+    video.dataset.montado = 'si';
+    const source = document.createElement('source');
+    source.src = video.dataset.src;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
+    // play() rechaza si el navegador bloquea la reproducción automática;
+    // el póster se queda visible y la tarjeta sigue siendo legible.
+    video.play().catch(() => {});
+  };
+
+  const sinMovimientoVideo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (sinMovimientoVideo) {
+    // Con movimiento reducido no se autoreproduce nada: se dejan los
+    // controles para que la reproducción sea una decisión del usuario.
+    videosDiferidos.forEach((video) => {
+      video.setAttribute('controls', '');
+      video.removeAttribute('loop');
+    });
+  } else {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        montarVideo(entry.target);
+        videoObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: MARGEN_PRECARGA_VIDEO });
+
+    videosDiferidos.forEach((video) => videoObserver.observe(video));
+  }
 }

@@ -1,4 +1,40 @@
+# Malavar Mx — https://malavar.mx/
+
 User-agent: *
 Allow: /
+
+# --- Rastreadores de búsqueda con IA ---
+# Se declaran explícitamente para dejar constancia de la política: estos
+# alimentan respuestas que citan la fuente, así que interesan.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Rastreadores de entrenamiento sin retorno en visibilidad ---
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
 
 Sitemap: https://malavar.mx/sitemap.xml

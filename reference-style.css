@@ -1951,3 +1951,231 @@ h2 em {
     display: inline-block;
   }
 }
+
+/* ==========================================================================
+   Optimización SEO / GEO — bloques nuevos
+   Añadidos: párrafo de posicionamiento bajo el titular, sección de preguntas
+   frecuentes y pie de página con el NAP. Se anexan al final siguiendo la
+   convención del archivo: no se editan reglas anteriores, se sobrescriben.
+   ========================================================================== */
+
+/* Párrafo de posicionamiento. Va bajo el H1 y entrega el patrón
+   "Malavar Mx es…", que es la forma que los modelos extraen como definición.
+   Se mantiene deliberadamente por debajo del claim en peso visual: informa
+   sin competir con el titular. */
+.hero-posicionamiento {
+  max-width: 46ch;
+  margin-top: 18px;
+  color: rgba(232, 229, 221, .58);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(12.5px, 1.05vw, 14px);
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: .005em;
+}
+
+.hero-posicionamiento strong {
+  color: rgba(232, 229, 221, .82);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Preguntas frecuentes
+   Las respuestas van visibles, no plegadas en <details>: un bloque autónomo
+   de 134-167 palabras sólo se cita si está en el texto renderizado. La rejilla
+   a dos columnas evita que 8 respuestas largas se lean como un muro.
+   -------------------------------------------------------------------------- */
+.faq {
+  background: #04070b;
+  border-top: 1px solid var(--line);
+}
+
+.faq-intro {
+  max-width: 620px;
+  margin-bottom: clamp(38px, 5vw, 64px);
+}
+
+.faq-intro h2 {
+  margin: 0 0 22px;
+  color: var(--ink);
+  font-size: clamp(30px, 4.4vw, 58px);
+  line-height: 1.04;
+}
+
+.faq-intro h2 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.faq-description {
+  max-width: 52ch;
+  color: rgba(232, 229, 221, .6);
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.75;
+}
+
+.faq-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 2.6vw, 38px);
+  background: #05080c;
+  transition: background .45s cubic-bezier(.22, .7, .25, 1);
+}
+
+.faq-item:hover {
+  background: #070c13;
+}
+
+.faq-item h3 {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(19px, 1.9vw, 25px);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+
+.faq-item p {
+  margin: 0;
+  color: rgba(244, 240, 232, .62);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(12.5px, 1.02vw, 14px);
+  line-height: 1.78;
+}
+
+/* --------------------------------------------------------------------------
+   Pie de página
+   No existía. Es donde vive el NAP en texto plano, que debe coincidir con el
+   schema LocalBusiness y con Google Business Profile cuando se dé de alta.
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding: clamp(56px, 6vw, 96px) var(--header-gutter, clamp(20px, 4.2vw, 68px)) 38px;
+  background: #02070d;
+  border-top: 1px solid var(--line);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
+  gap: clamp(30px, 4vw, 64px);
+  align-items: start;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.footer-wordmark {
+  margin: 0 0 18px;
+  color: var(--ink);
+  font-family: "Michroma", "Josefin Sans", sans-serif;
+  font-size: clamp(14px, 1.3vw, 17px);
+  letter-spacing: .22em;
+}
+
+.footer-wordmark span { color: var(--gold); }
+
+.footer-claim {
+  max-width: 38ch;
+  margin: 0;
+  color: rgba(232, 229, 221, .72);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.72;
+}
+
+.footer-bloque h2 {
+  margin: 0 0 16px;
+  color: var(--gold);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+.footer-bloque ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-bloque li + li { margin-top: 9px; }
+
+.footer-bloque address {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-style: normal;
+}
+
+.footer-bloque a,
+.footer-bloque address span {
+  color: rgba(232, 229, 221, .78);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+
+.footer-bloque a:hover,
+.footer-bloque a:focus-visible { color: var(--gold); }
+
+.footer-horario {
+  margin: 16px 0 0;
+  color: rgba(232, 229, 221, .68);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 11.5px;
+  letter-spacing: .02em;
+}
+
+.footer-legal {
+  max-width: 1440px;
+  margin: clamp(38px, 4.5vw, 64px) auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: rgba(232, 229, 221, .66);
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 11.5px;
+  letter-spacing: .02em;
+}
+
+/* El póster cubre la caja del vídeo mientras el mp4 se monta bajo demanda;
+   sin esto el navegador lo encaja con letterbox y el encuadre salta. */
+.vehicle-video video[data-src] {
+  object-fit: cover;
+  background: #05080c;
+}
+
+@media (max-width: 760px) {
+  .faq-list { grid-template-columns: minmax(0, 1fr); }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 24px;
+  }
+
+  .footer-marca { grid-column: 1 / -1; }
+
+  .hero-posicionamiento {
+    max-width: none;
+    font-size: 13px;
+  }
+
+  /* El párrafo de posicionamiento alarga la columna del hero y el botón de
+     cotización llegaba a pisar el indicador "Explorar flota", que va absoluto
+     a 33 px del borde inferior. Se le reserva el carril. */
+  .hero-copy {
+    padding-bottom: 64px;
+  }
+}
