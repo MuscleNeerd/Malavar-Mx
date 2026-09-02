@@ -22,19 +22,21 @@ Opening `index.html` via `file://` mostly works but breaks the `data-clean-logo`
 
 ### The CSS cascade *is* the architecture
 
-`index.html` loads five stylesheets, and **load order is the whole design system**. Later files deliberately override earlier ones; nothing is scoped or modular.
+`index.html` loads six stylesheets (plus Swiper's from a CDN), and **load order is the whole design system**. Later files deliberately override earlier ones; nothing is scoped or modular.
 
 | Order | File | Role |
 |---|---|---|
+| 0 | `swiper-bundle.min.css` (jsDelivr, pinned to Swiper 11.2.6) | Base carousel styles; loaded first so every project sheet can override it. |
 | 1 | `styles.css` | Base layout + original **light** palette (`--paper` cream, dark ink text). Minified into a single line — hard to edit; prefer overriding it. |
 | 2 | `experience.css` | Dark repaint, custom SUV cursor, intro sequence work, plus a legacy scene-navigation system that is explicitly disabled at the top of the file. |
 | 3 | `intro-override.css` | Final version of the opening logo animation (supersedes the intro rules in the two files above). |
 | 4 | `clients-gallery.css` | Layout for the `#clientes` section. |
-| 5 | `reference-style.css` | **The current visual direction** — dark cinematic (`#05080c`, brass `--gold`), grain overlay, every vehicle card, the galleries, and the final typography pass. ~1700 lines. |
+| 5 | `reference-style.css` | **The current visual direction** — dark cinematic (`#05080c`, brass `--gold`), grain overlay, every vehicle card, the galleries, and the final typography pass. ~1500 lines. |
+| 6 | `clients-swiper.css` | The `#clientes` logo carousel (Swiper, 2 rows of cards). Loaded last because it replaces the old `.client-list` grid that used to live in `reference-style.css`, **and** because it restacks the section: `reference-style.css` lays `.clients` out as two columns (heading beside the logos) and this file overrides it to a single centred column with the heading on top. |
 
 Practical consequence: **`reference-style.css` is where almost all real work happens.** It is organized as a chronological log of commented Spanish blocks, each a later refinement of an earlier one (e.g. the heading typography is redefined three separate times further down the file). Follow that convention — append a new commented block at the bottom rather than surgically editing an older rule, because an older rule you "fix" is often already overridden below.
 
-It is loaded with a cache-buster: `reference-style.css?v=20260902-2`. **Bump that string whenever you edit the file**, otherwise browsers serve the stale copy.
+It is loaded with a cache-buster: `reference-style.css?v=20260903-3` (and `clients-swiper.css` carries the same one). **Bump that string whenever you edit either file**, otherwise browsers serve the stale copy.
 
 Mobile breakpoint is `max-width: 760px` across all files; the narrower breakpoints are one-off fixes.
 
@@ -42,8 +44,7 @@ Mobile breakpoint is `max-width: 760px` across all files; the narrower breakpoin
 
 Do not assume a file is live before grepping the markup:
 
-- `clients-swiper.css` is **not linked** from `index.html` at all (leftover from a Swiper-based clients carousel).
-- `clients-gallery.css`'s `.clients-gallery` / `.client-page` rules have no matching markup — the current `.client-list` grid is styled entirely in `reference-style.css`. Only its `.clients` / `.clients-heading` rules still apply.
+- `clients-gallery.css`'s `.clients-gallery` / `.client-card` / `.client-page` rules have no matching markup, and so do the `.clients-gallery` / `.clients-pagination` touch-ups in `reference-style.css` (~line 450). Only `clients-gallery.css`'s `.clients` / `.clients-heading` / `.clients-description` rules still apply.
 - `styles.css` `.vehicle-photo` rules and `experience.css`'s clients carousel (line ~301) target markup that no longer exists.
 
 ### Vehicle cards
@@ -66,12 +67,19 @@ If you renumber or reorder cards, the numbering is hand-written in the HTML; not
 
 ### `script.js`
 
-Small and unbundled; four independent blocks:
+Small and unbundled; five independent blocks:
 
 - `data-clean-logo` — canvas pass that knocks white backgrounds out of logo PNGs. **Currently no element in `index.html` carries this attribute**, so it is inert; keep it if reintroducing raw client logos.
 - Mobile nav toggle (`.menu-toggle` ↔ `nav.open`).
 - Contact form — intercepts submit, builds a `mailto:` URL from the fields, and navigates to it. The `<form action="mailto:…">` is only a no-JS fallback. There is no backend.
 - `.reveal` IntersectionObserver → adds `.visible` (threshold `0.18`, unobserves after firing). Any new element that should animate in needs `class="reveal"` (add `delayed` for the staggered variant); an element that never enters the viewport stays invisible.
+- Clients carousel — initializes Swiper on `.clients-swiper`, with `loop: true` and autoplay. Each slide is a card. The grid is 2 rows everywhere, 2 columns on mobile and 3 from the `761` breakpoint up. Two hard constraints:
+  - `grid.fill` **must** stay `'column'` — Swiper refuses to loop a `fill: 'row'` grid.
+  - `rows x slidesPerView` **must** stay below 12 (the number of logos). If all twelve fit in one view, Swiper leaves `snapGrid` at 1, sets `isLocked` and the autoplay freezes while still reporting `autoplay.running === true`.
+
+  Desktop uses 3 columns rather than the 4 of the design reference on purpose: at 1440px, 4 columns shrink the drawn logo from 346px to 244px wide, and logo size has been the client's repeated complaint. `clients-swiper.css` mirrors two numbers from the JS: `--filas-cliente` must match `grid.rows` and `--hueco-cliente` must match `spaceBetween`, because the Grid module divides the container's CSS height between the rows. The `.reveal` class sits on `.clients-heading` and on the wrapping `.clients-swiper-shell`, not on the Swiper element itself.
+
+  The cards are painted **darker than the section background** on purpose: most of the client PNGs ship with an opaque black background baked in, and on a light card they read as hard black rectangles.
 
 ### Contact details are hardcoded in several places
 

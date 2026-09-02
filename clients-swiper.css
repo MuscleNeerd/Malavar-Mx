@@ -1,154 +1,185 @@
-.clients-swiper {
-  position: absolute;
-  z-index: 4;
-  top: 53%;
-  left: 50%;
-  width: min(960px, 76vw);
-  height: min(420px, 55vh);
-  overflow: visible;
-  transform: translate(-50%, -43%);
-}
+/* Clientes: carrusel Swiper de tarjetas, con el titular centrado encima.
+   Se carga después de reference-style.css porque sustituye por completo
+   a la antigua cuadrícula .client-list y reescribe el reparto en dos
+   columnas de la sección (titular al lado) por uno apilado y centrado.
 
-.clients-swiper .swiper-wrapper,
-.clients-swiper .client-page {
-  height: 100%;
-}
+   Cuadrícula por viewport: 2 columnas en móvil y 3 de tablet en adelante,
+   siempre con 2 filas. Regla dura: filas x columnas debe ser MENOR que 12.
+   Si los doce logotipos caben en una sola vista, Swiper deja snapGrid en 1,
+   marca isLocked y el autoplay se congela aunque siga diciendo que corre.
+   3x2 = 6 y 2x2 = 4 cumplen de sobra.
 
-.clients-swiper .client-page {
-  width: 100%;
-  background: transparent;
-}
+   --filas-cliente debe coincidir con grid.rows y --hueco-cliente con
+   spaceBetween del breakpoint correspondiente en script.js. */
 
-.clients-swiper .client-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  height: 100%;
-  gap: 18px;
-}
-
-.clients-swiper .client-grid a {
-  position: relative;
+/* La sección deja de repartir el ancho entre titular y logos: ahora es una
+   sola columna centrada, y ese ancho liberado es el que agranda las tarjetas. */
+.clients {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 42px 20px;
-  color: #fff;
-  text-decoration: none;
-  border: 1px solid rgba(204, 216, 228, .22);
-  border-radius: 36px;
-  background:
-    radial-gradient(ellipse at 50% 12%, rgba(74, 123, 160, .20), transparent 43%),
-    linear-gradient(145deg, #172c38, #161b2b 58%, #111827);
-  box-shadow: 0 20px 52px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .07);
-  transition: transform .3s ease, border-color .3s ease, background .3s ease;
+  gap: clamp(38px, 4.6vw, 66px);
 }
 
-.clients-swiper .client-grid a:hover {
-  transform: translateY(-5px);
-  border-color: rgba(204, 216, 228, .42);
-  background:
-    radial-gradient(ellipse at 50% 12%, rgba(86, 141, 194, .30), transparent 43%),
-    linear-gradient(145deg, #1b3240, #191e31 58%, #121a29);
-}
-
-.clients-swiper .client-grid a::before {
-  content: "";
-  width: 116px;
-  height: 116px;
-  margin-bottom: 38px;
-  border-radius: 25px;
-  background-color: rgba(83, 99, 119, .46);
-  background-image:
-    linear-gradient(#fff 0 0), linear-gradient(#fff 0 0), linear-gradient(#fff 0 0),
-    linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
-  background-repeat: no-repeat;
-  background-size: 27px 25px, 27px 25px, 27px 25px, 52px 25px, 35px 25px;
-  background-position: 28px 39px, 59px 39px, 90px 39px, 28px 68px, 80px 68px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
-}
-
-.clients-swiper .client-grid span {
-  color: #f5f2eb;
-  font-family: "Bodoni Moda", "Times New Roman", serif;
-  font-size: clamp(20px, 2.1vw, 31px);
-  font-weight: 400;
-  letter-spacing: .14em;
-  line-height: 1;
+.clients-heading {
+  position: relative;
+  z-index: 1;
+  top: auto;
+  left: auto;
+  width: 100%;
+  max-width: 780px;
+  padding-top: 0;
   text-align: center;
+  pointer-events: auto;
 }
 
-.clients-swiper .client-grid b {
-  position: absolute;
-  left: 50%;
-  bottom: 30px;
-  color: var(--gold);
-  font-size: 18px;
-  font-weight: 400;
-  transform: translateX(-50%);
+.clients-heading h2 {
+  margin: 0 0 20px;
 }
 
-.clients-swiper .swiper-pagination {
-  z-index: 7;
-  right: auto;
-  bottom: -28px;
-  left: 50%;
-  width: auto;
+.clients-description {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.clients-swiper-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.clients-swiper {
+  /* El módulo Grid de Swiper reparte el alto del contenedor entre las filas,
+     así que el contenedor tiene que declarar ese alto. Los doce logotipos son
+     PNG de 400x100: la tarjeta se dimensiona para que el logotipo entre a lo
+     ancho y quede aire arriba y abajo, como en la referencia.
+     El tope en vh evita que la parrilla desborde en pantallas bajas. */
+  --fila-cliente: clamp(84px, min(calc(7.4vw + 34px), 19vh), 190px);
+  --hueco-cliente: 18px;
+  --filas-cliente: 2;
+  width: 100%;
+  min-width: 0;
+  height: calc(
+    var(--fila-cliente) * var(--filas-cliente) +
+    var(--hueco-cliente) * (var(--filas-cliente) - 1)
+  );
+  overflow: hidden;
+}
+
+.clients-swiper .swiper-wrapper {
+  box-sizing: border-box;
+}
+
+/* Cada logotipo en su propia tarjeta: esquina redondeada, borde tenue y
+   sombra muy suave, en la paleta oscura del sitio (no la clara de la
+   referencia). El slide de Swiper ES la tarjeta.
+   La tarjeta es deliberadamente MÁS OSCURA que el fondo de la sección: la
+   mayoría de los PNG traen fondo negro horneado, y sobre una tarjeta clara
+   se leerían como rectángulos negros recortados. Sobre este pozo oscuro el
+   fondo del archivo se funde con la tarjeta y sólo se ve la marca. */
+.clients-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 1.5vw, 30px);
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(238, 233, 222, .12);
+  border-radius: 14px;
+  background:
+    linear-gradient(152deg, rgba(4, 9, 15, .93), rgba(1, 4, 8, .97));
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, .34),
+    inset 0 1px 0 rgba(255, 255, 255, .045);
+  transition: transform .38s cubic-bezier(.2, .75, .25, 1), border-color .38s ease, box-shadow .38s ease, background .38s ease;
+}
+
+.clients-swiper .swiper-slide > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  /* Redondea la esquina del propio archivo: suaviza el canto de los PNG
+     que traen fondo opaco. */
+  border-radius: 6px;
+  transition: transform .38s cubic-bezier(.2, .75, .25, 1);
+}
+
+.clients-swiper .swiper-slide:hover,
+.clients-swiper .swiper-slide:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(196, 154, 91, .55);
+  outline: none;
+  background:
+    linear-gradient(152deg, rgba(8, 16, 25, .95), rgba(2, 6, 11, .97));
+  box-shadow:
+    0 22px 42px rgba(0, 0, 0, .42),
+    inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+
+.clients-swiper .swiper-slide:hover > img,
+.clients-swiper .swiper-slide:focus-visible > img {
+  transform: scale(1.03);
+}
+
+.clients-swiper .swiper-slide:focus-visible {
+  border-color: rgba(196, 154, 91, .9);
+}
+
+/* Paginación: barras discretas en latón, centradas bajo la parrilla. */
+.clients-swiper-pagination {
   display: flex;
   gap: 7px;
-  transform: translateX(-50%);
+  align-items: center;
+  justify-content: center;
+  margin-top: 26px;
 }
 
-.clients-swiper .swiper-pagination-bullet {
-  width: 6px;
-  height: 6px;
+.clients-swiper-pagination .swiper-pagination-bullet {
+  width: 18px;
+  height: 2px;
   margin: 0 !important;
-  background: rgba(255, 255, 255, .45);
+  border-radius: 0;
+  background: rgba(238, 237, 232, .28);
   opacity: 1;
+  transition: width .3s ease, background .3s ease;
 }
 
-.clients-swiper .swiper-pagination-bullet-active {
-  width: 22px;
-  border-radius: 4px;
+.clients-swiper-pagination .swiper-pagination-bullet-active {
+  width: 34px;
   background: var(--gold);
 }
 
 @media (max-width: 760px) {
+  .clients {
+    gap: clamp(30px, 8vw, 44px);
+  }
+
   .clients-swiper {
-    top: 55%;
-    width: min(88vw, 540px);
-    height: min(390px, 54vh);
+    --fila-cliente: clamp(58px, 16vw, 96px);
+    --hueco-cliente: 12px;
+    --filas-cliente: 2;
   }
 
-  .clients-swiper .client-grid {
-    gap: 8px;
+  .clients-swiper .swiper-slide {
+    /* Padding más ajustado que en escritorio: con tarjetas de ~158 px el
+       relleno grande se comía el ancho útil del logotipo. */
+    padding: 9px;
+    border-radius: 11px;
   }
 
-  .clients-swiper .client-grid a {
-    padding: 24px 8px;
-    border-radius: 22px;
+  .clients-swiper-pagination {
+    margin-top: 20px;
   }
+}
 
-  .clients-swiper .client-grid a::before {
-    width: 68px;
-    height: 68px;
-    margin-bottom: 25px;
-    border-radius: 16px;
-    background-size: 16px 14px, 16px 14px, 16px 14px, 30px 14px, 21px 14px;
-    background-position: 16px 23px, 34px 23px, 52px 23px, 16px 40px, 46px 40px;
-  }
-
-  .clients-swiper .client-grid span {
-    font-size: clamp(11px, 3.1vw, 16px);
-    letter-spacing: .07em;
-  }
-
-  .clients-swiper .client-grid b {
-    bottom: 16px;
-    font-size: 13px;
-  }
-
-  .clients-swiper .swiper-pagination {
-    bottom: -24px;
+@media (prefers-reduced-motion: reduce) {
+  .clients-swiper .swiper-wrapper {
+    transition-duration: 0ms !important;
   }
 }

@@ -8,11 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Josefin+Sans:wght@300;400&family=Michroma&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.6/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="experience.css" />
     <link rel="stylesheet" href="intro-override.css" />
     <link rel="stylesheet" href="clients-gallery.css" />
-    <link rel="stylesheet" href="reference-style.css?v=20260902-2" />
+    <link rel="stylesheet" href="reference-style.css?v=20260903-5" />
+    <link rel="stylesheet" href="clients-swiper.css?v=20260903-5" />
   </head>
   <body>
     <div class="intro" aria-hidden="true">
@@ -23,8 +25,9 @@
 
     <header class="site-header">
       <a class="brand brand-wordmark" href="#inicio" aria-label="Malavar Mx, inicio">MALAVAR <span>MX</span></a>
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
-      <nav>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-controls="site-navigation" aria-expanded="false"><span></span><span></span></button>
+      <button class="menu-backdrop" type="button" aria-label="Cerrar menú" tabindex="-1"></button>
+      <nav id="site-navigation" aria-label="Navegación principal">
         <a href="#flota">Flota</a><a href="#suvs">SUVs</a><a href="#servicios">Servicios</a><a href="#clientes">Clientes</a><a href="#nosotros">Nosotros</a><a class="nav-cta" href="#contacto">Reservar</a>
       </nav>
     </header>
@@ -162,19 +165,24 @@
             <h2 class="gmc-heading-type">Nuestros<br /><em>clientes.</em></h2>
             <p class="clients-description">Productoras y equipos que confían en Malavar Mx para llegar con precisión, presencia y total discreción.</p>
           </div>
-          <div class="client-list reveal delayed" aria-label="Clientes de Malavar Mx">
-            <a href="https://www.landia.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/landia.png" alt="Landia" /></a>
-            <a href="https://stinkfilms.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/stink.png" alt="Stink" /></a>
-            <a href="https://themaestros.tv/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/the-maestros.png" alt="The Maestros" /></a>
-            <a href="https://habitantproductions.com/home/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/habitant.png" alt="Habitant" /></a>
-            <a href="https://casaxraiz.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/casa-raiz.png" alt="Casa Raíz" /></a>
-            <a href="https://www.storyweproduce.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/story.png" alt="Story" /></a>
-            <a href="https://orugacine.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oruga.png" alt="Oruga" /></a>
-            <a href="http://fightfilms.la/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/fight-films.png" alt="Fight Films" /></a>
-            <a href="https://mamahungara.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/mama-hungara.png" alt="Mamá Húngara" /></a>
-            <a href="https://www.wemonsters.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/we-monster.png" alt="We Monster" /></a>
-            <a href="https://tercio.mx/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/terciopelo.png" alt="Terciopelo" /></a>
-            <a href="https://produccionesoxigeno.es/oficinas/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oxigeno.png" alt="Oxígeno" /></a>
+          <div class="clients-swiper-shell reveal delayed">
+            <div class="clients-swiper swiper" aria-label="Clientes de Malavar Mx">
+              <div class="swiper-wrapper">
+                <a class="swiper-slide" href="https://www.landia.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/landia.png" alt="Landia" /></a>
+                <a class="swiper-slide" href="https://stinkfilms.com/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/stink.png" alt="Stink" /></a>
+                <a class="swiper-slide" href="https://themaestros.tv/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/the-maestros.png" alt="The Maestros" /></a>
+                <a class="swiper-slide" href="https://habitantproductions.com/home/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/habitant.png" alt="Habitant" /></a>
+                <a class="swiper-slide" href="https://casaxraiz.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/casa-raiz.png" alt="Casa Raíz" /></a>
+                <a class="swiper-slide" href="https://www.storyweproduce.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/story.png" alt="Story" /></a>
+                <a class="swiper-slide" href="https://orugacine.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oruga.png" alt="Oruga" /></a>
+                <a class="swiper-slide" href="http://fightfilms.la/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/fight-films.png" alt="Fight Films" /></a>
+                <a class="swiper-slide" href="https://mamahungara.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/mama-hungara.png" alt="Mamá Húngara" /></a>
+                <a class="swiper-slide" href="https://www.wemonsters.com/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/we-monster.png" alt="We Monster" /></a>
+                <a class="swiper-slide" href="https://tercio.mx/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/terciopelo.png" alt="Terciopelo" /></a>
+                <a class="swiper-slide" href="https://produccionesoxigeno.es/oficinas/mexico/" target="_blank" rel="noopener noreferrer"><img src="assets/client-logos/oxigeno.png" alt="Oxígeno" /></a>
+              </div>
+            </div>
+            <div class="clients-swiper-pagination"></div>
           </div>
         </div>
       </section>
@@ -190,6 +198,7 @@
         </form>
       </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.2.6/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

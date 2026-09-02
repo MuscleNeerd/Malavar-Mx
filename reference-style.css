@@ -576,80 +576,7 @@ h2 em {
   line-height: 1.75;
 }
 
-.client-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 13px;
-  counter-reset: client;
-}
-
-.client-list a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: clamp(132px, 15vh, 176px);
-  padding: 34px 26px;
-  overflow: hidden;
-  color: #f3f0e9;
-  text-decoration: none;
-  border: 1px solid rgba(235, 230, 218, .17);
-  background:
-    linear-gradient(130deg, rgba(18, 43, 62, .66), rgba(5, 13, 23, .76)),
-    #07121e;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
-  counter-increment: client;
-  transition: transform .38s cubic-bezier(.2, .75, .25, 1), border-color .38s ease, background .38s ease, box-shadow .38s ease;
-}
-
-.client-list a::before {
-  content: counter(client, decimal-leading-zero);
-  position: absolute;
-  top: 19px;
-  left: 24px;
-  color: var(--gold);
-  font: 600 9px "DM Sans", sans-serif;
-  letter-spacing: .18em;
-}
-
-.client-list a::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 42%;
-  height: 1px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform .38s ease;
-}
-
-.client-list a:hover,
-.client-list a:focus-visible {
-  z-index: 1;
-  transform: translateY(-6px);
-  border-color: rgba(205, 165, 99, .82);
-  outline: none;
-  background:
-    radial-gradient(circle at 84% 12%, rgba(83, 142, 182, .25), transparent 34%),
-    linear-gradient(130deg, rgba(22, 53, 76, .92), rgba(6, 15, 27, .93));
-  box-shadow: 0 18px 34px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .08);
-}
-
-.client-list a:hover::after,
-.client-list a:focus-visible::after { transform: scaleX(1); }
-
-.client-list a > strong {
-  color: inherit;
-  font-family: "DM Sans", sans-serif;
-  font-size: clamp(20px, 1.75vw, 30px);
-  font-weight: 600;
-  letter-spacing: .1em;
-  line-height: 1.15;
-  text-align: center;
-  text-transform: uppercase;
-}
+/* La cuadrícula de logotipos vive ahora en clients-swiper.css (carrusel Swiper). */
 
 @media (max-width: 760px) {
   .clients {
@@ -661,10 +588,6 @@ h2 em {
 
   .clients-heading { padding-top: 0; }
   .clients-heading h2 { font-size: clamp(52px, 15vw, 72px); }
-  .client-list { grid-template-columns: 1fr; gap: 10px; }
-  .client-list a { min-height: 118px; padding: 22px; }
-  .client-list a::before { top: 17px; left: 21px; }
-  .client-list a > strong { font-size: clamp(20px, 6vw, 28px); }
 }
 
 /* Van Ejecutiva: una ficha urbana, más directa y funcional. */
@@ -1517,65 +1440,6 @@ h2 em {
   }
 }
 
-/* Clientes: cada casilla muestra el logotipo proporcionado, respetando su proporción. */
-.client-list a > img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
-  transition: transform .38s cubic-bezier(.2, .75, .25, 1), filter .38s ease;
-}
-
-.client-list a:hover > img,
-.client-list a:focus-visible > img {
-  transform: scale(1.035);
-  filter: drop-shadow(0 5px 9px rgba(0, 0, 0, .22));
-}
-
-@media (max-width: 760px) {
-  .client-list a > img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-}
-
-/* Clientes: cuadrícula limpia, sin contornos ni índices; todos los logos comparten el mismo espacio. */
-.client-list a {
-  min-height: clamp(132px, 15vh, 176px);
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.client-list {
-  grid-auto-rows: clamp(132px, 15vh, 176px);
-}
-
-.client-list a::before,
-.client-list a::after {
-  content: none;
-  display: none;
-}
-
-.client-list a > img {
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  object-fit: contain;
-  object-position: center;
-}
-
-.client-list a:hover,
-.client-list a:focus-visible {
-  background: transparent;
-  box-shadow: none;
-}
-
 /* Reservaciones: tipografía geométrica y minimalista inspirada en la referencia VALUE. */
 .contact,
 .contact .eyebrow,
@@ -1663,16 +1527,363 @@ h2 em {
 }
 
 @media (max-width: 760px) {
-  .client-list {
-    grid-auto-rows: 118px;
-  }
-
-  .client-list a {
-    min-height: 118px;
-  }
-
   .contact h2.gmc-heading-type {
     font-size: clamp(42px, 12vw, 74px);
     letter-spacing: .045em !important;
+  }
+}
+
+/* Servicios y reservaciones: ajuste responsive final.
+   Las dos columnas se conservan en escritorio; en tablet y móvil se apilan
+   para que titulares, datos de contacto y campos mantengan un ancho cómodo. */
+.services,
+.contact,
+.services > *,
+.contact > *,
+.service > div {
+  min-width: 0;
+}
+
+.services h2,
+.contact h2 {
+  width: 100%;
+  max-width: none;
+}
+
+.services {
+  grid-template-columns: minmax(280px, .8fr) minmax(420px, 1.2fr);
+  gap: clamp(56px, 8vw, 128px);
+}
+
+.service b {
+  justify-self: end;
+}
+
+.contact {
+  grid-template-columns: minmax(320px, .9fr) minmax(440px, 1.1fr);
+  gap: clamp(64px, 9vw, 144px);
+}
+
+.contact-form {
+  width: 100%;
+  min-width: 0;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  min-width: 0;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .services,
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(48px, 7vw, 76px);
+    min-height: auto;
+    padding: clamp(112px, 13vw, 148px) clamp(48px, 8vw, 88px);
+  }
+
+  .services-intro,
+  .contact-copy {
+    width: min(100%, 800px);
+  }
+
+  .services-intro h2.gmc-heading-type,
+  .contact h2.gmc-heading-type {
+    font-size: clamp(58px, 8.2vw, 86px);
+  }
+
+  .contact-copy {
+    padding-right: 0;
+  }
+
+  .contact-form {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 760px) {
+  .services,
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(38px, 11vw, 54px);
+    min-height: auto;
+    padding: clamp(88px, 24vw, 112px) clamp(20px, 6vw, 46px) clamp(64px, 18vw, 86px) !important;
+  }
+
+  .services-intro h2.gmc-heading-type {
+    font-size: clamp(36px, 11.5vw, 62px);
+    letter-spacing: .045em !important;
+  }
+
+  .services-intro h2.gmc-heading-type em {
+    letter-spacing: .045em;
+  }
+
+  .service {
+    grid-template-columns: clamp(30px, 9vw, 42px) minmax(0, 1fr) 20px;
+    gap: clamp(8px, 3vw, 16px);
+    padding: 22px 0;
+  }
+
+  .services .service h3 {
+    font-size: clamp(20px, 6.5vw, 25px);
+    overflow-wrap: break-word;
+  }
+
+  .services .service p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .contact-copy {
+    padding-right: 0;
+  }
+
+  .contact h2.gmc-heading-type {
+    font-size: clamp(34px, 10.8vw, 58px);
+    letter-spacing: .035em !important;
+    line-height: 1.08 !important;
+  }
+
+  .contact-copy > p:not(.eyebrow) {
+    max-width: none;
+  }
+
+  .contact-copy .phone-link {
+    font-size: clamp(21px, 6.8vw, 26px);
+  }
+
+  .contact-copy .email-link {
+    overflow-wrap: anywhere;
+  }
+
+  .contact-copy .whatsapp-link,
+  .contact-form .button {
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .contact-copy .whatsapp-link {
+    max-width: 360px;
+  }
+
+  .contact-form {
+    gap: 18px;
+    padding: clamp(20px, 6vw, 28px) clamp(16px, 5vw, 24px);
+  }
+
+  .contact-form label {
+    gap: 10px;
+    line-height: 1.35;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    font-size: 16px;
+  }
+}
+
+/* Header: alineación horizontal, superficie de clic completa y navegación
+   móvil en panel lateral. Esta capa reemplaza el menú móvil que usaba
+   display: none y aparecía sin transición. */
+.site-header {
+  --header-gutter: clamp(20px, 4.2vw, 68px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 64px);
+  height: 92px;
+  padding: 17px var(--header-gutter);
+  pointer-events: auto;
+}
+
+.site-header > * {
+  pointer-events: auto;
+}
+
+.brand-wordmark {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 58px;
+}
+
+.site-header nav {
+  display: flex;
+  min-width: 0;
+  min-height: 58px;
+  margin-left: auto;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.site-header nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+}
+
+.menu-backdrop {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  body.mobile-menu-open {
+    overflow: hidden !important;
+  }
+
+  .site-header {
+    --header-gutter: clamp(18px, 5vw, 38px);
+    height: 88px;
+    padding: 15px var(--header-gutter);
+    gap: 18px;
+  }
+
+  .site-header::after {
+    top: 10px;
+    right: var(--header-gutter);
+    left: var(--header-gutter);
+    height: 58px;
+  }
+
+  .brand-wordmark {
+    min-height: 58px;
+    transition: opacity .25s ease;
+  }
+
+  .site-header.menu-open .brand-wordmark {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin-left: auto;
+    padding: 0;
+    place-content: center;
+    gap: 6px;
+    color: #fff;
+    border: 1px solid rgba(236, 232, 219, .18);
+    border-radius: 0;
+    background: rgba(3, 9, 15, .5);
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+    transform-origin: center;
+    transition: transform .32s ease, opacity .22s ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  .menu-backdrop {
+    position: fixed;
+    z-index: 1;
+    inset: 0;
+    display: block;
+    padding: 0;
+    visibility: hidden;
+    border: 0;
+    background: rgba(1, 5, 9, .68);
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+    backdrop-filter: blur(3px);
+    transition: opacity .35s ease, visibility 0s linear .35s;
+  }
+
+  .site-header.menu-open .menu-backdrop {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .site-header nav {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    width: min(86vw, 380px);
+    height: 100dvh;
+    min-height: 0;
+    margin: 0;
+    padding: clamp(112px, 18vh, 148px) clamp(24px, 8vw, 38px) 38px;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    visibility: hidden;
+    background:
+      radial-gradient(ellipse at 88% 0%, rgba(66, 111, 148, .24), transparent 42%),
+      linear-gradient(145deg, #07111c, #02070d 72%);
+    box-shadow: -24px 0 60px rgba(0, 0, 0, .42);
+    transform: translateX(105%);
+    pointer-events: none;
+    transition: transform .42s cubic-bezier(.76, 0, .18, 1), visibility 0s linear .42s;
+  }
+
+  .site-header nav.open {
+    display: flex;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .site-header nav a {
+    width: 100%;
+    min-height: 56px;
+    padding: 4px 0;
+    justify-content: space-between;
+    color: rgba(248, 246, 240, .88);
+    font-size: 12px;
+    letter-spacing: .2em;
+    border-bottom: 1px solid rgba(236, 232, 219, .14);
+  }
+
+  .site-header nav a::after {
+    content: "\2197";
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 0;
+  }
+
+  .site-header nav .nav-cta {
+    min-height: 52px;
+    margin-top: 26px;
+    padding: 0 17px;
+    border: 1px solid rgba(225, 212, 187, .52);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle span,
+  .menu-backdrop,
+  .site-header nav {
+    transition-duration: 0s !important;
   }
 }
