@@ -7,12 +7,14 @@ se actualizan con cada commit solicitado. Contrasta siempre esta memoria con el
 ## Punto de guardado
 
 - Rama: `main`.
-- Remoto: `origin` → `https://github.com/MuscleNeerd/Malavar-Mx`.
-- Commit base antes de este registro: `3399043` — «Mejora la portada con
-  iluminación interactiva y tipografía refinada».
-- Commit que debe contener este registro: **«Traslada las luces al encabezado
-  de flota»**.
-- Es un commit local. No se solicitó push ni despliegue.
+- Remoto configurado: `origin` → `git@github.com:MuscleNeerd/Malavar-Mx.git`.
+- Commit base antes de este registro: `babd45c` — «Traslada las luces al
+  encabezado de flota».
+- Commit que debe contener este registro: **«Actualiza la memoria para sincronizar el repositorio»**.
+- El usuario solicitó commit y push a `origin/main`. Antes de este registro,
+  `main` estaba tres commits por delante de la referencia local `origin/main`.
+  El resultado del push se comprueba después de crear este commit; este
+  documento no acredita un despliegue.
 
 ## Estado técnico
 
@@ -40,6 +42,9 @@ backend, paquetes ni paso de compilación. Se sirve localmente con
 
 ## Cambios incluidos en este punto
 
+- Este commit actualiza únicamente `MEMORIA_PROYECTO.md`; no había cambios
+  pendientes en archivos versionados. Conserva el estado funcional del commit
+  base, cuyos cambios se resumen a continuación.
 - `index.html`: coloca dos focos azules diagonales en las esquinas superiores
   del encabezado «Diseñada para hacer presencia». Quita esas luces del panel
   «Elegancia que se mueve contigo». Actualiza los cache-busters.
@@ -59,6 +64,7 @@ backend, paquetes ni paso de compilación. Se sirve localmente con
 
 - `git diff --check`: pasó.
 - `node --check script.js`: pasó.
+- Se revisaron el estado de Git, los commits recientes y el remoto configurado.
 - No se ejecutó suite automatizada; el proyecto no tiene una suite configurada.
 - No se verificó el sitio publicado ni los recursos CDN.
 
@@ -73,7 +79,8 @@ Es un sitio estático en español para una empresa de traslados de lujo. No tien
 build; se puede servir con python3 -m http.server 8000. Respeta el orden de CSS,
 las galerías crossfade y el carrusel Swiper de dos filas.
 
-El último commit «Traslada las luces al encabezado de flota» coloca dos haces
+El último cambio funcional, «Traslada las luces al encabezado de flota»
+(`babd45c`), coloca dos haces
 azules diagonales en las esquinas superiores de «Diseñada para hacer presencia».
 Respiran y se activan al aparecer el encabezado en pantalla. El panel «Elegancia
 que se mueve contigo» ya no tiene luces y usa la tipografía Josefin Sans ligera
@@ -81,6 +88,12 @@ del título «El viaje empieza antes de llegar»; su color se conserva. Los
 cache-busters actuales son reference-style.css?v=20261006-18 y
 script.js?v=20261006-6. Las verificaciones realizadas fueron git diff --check y
 node --check script.js; no se probó despliegue.
+
+El checkpoint «Actualiza la memoria para sincronizar el repositorio» actualiza
+solo esta memoria. El usuario autorizó commit y push de los commits locales a
+origin/main. Comprueba git status y el remoto para conocer el resultado actual
+de la sincronización; no asumas que el push implica un despliegue verificado.
+No hay una nueva tarea funcional definida.
 
 Deja fuera `og_image.jpg` y `Captura de pantalla 2026-08-31 a la(s) 1.05.47 p.m..png`
 de la raíz, salvo que el usuario pida expresamente incorporarlos. `output/` y
