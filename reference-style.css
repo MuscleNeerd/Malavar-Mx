@@ -1951,3 +1951,269 @@ h2 em {
     display: inline-block;
   }
 }
+
+/* Portada: haces de los faros que acompañan al cursor. */
+.fleet-opening {
+  isolation: isolate;
+}
+
+.fleet-opening > .fleet-lights {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .fleet-opening > .fleet-lights {
+    display: none;
+  }
+}
+
+/* Acabado limpio y luminoso: carrocerías y cromados sin la textura de grano. */
+body::before {
+  content: none;
+  display: none;
+}
+
+.fleet-opening > img {
+  filter: brightness(1.3) contrast(1.05) saturate(1.06) !important;
+}
+
+.fleet-opening::after {
+  background: linear-gradient(180deg, rgba(1, 4, 8, .16), transparent 24%, transparent 78%, rgba(1, 4, 8, .2));
+}
+
+/* Luz de estudio desde arriba a la izquierda: metal pulido y sombra opuesta. */
+.hero > .hero-lighting {
+  position: absolute;
+  z-index: 1;
+  inset: 0 auto 0 0;
+  width: 59%;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 68%, transparent);
+  mask-image: linear-gradient(90deg, #000 68%, transparent);
+}
+
+.hero-light-source,
+.hero-light-beams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-light-source {
+  background:
+    radial-gradient(ellipse at 0 0, rgba(255, 250, 227, .85), rgba(242, 213, 158, .28) 11%, rgba(219, 185, 128, .07) 38%, transparent 65%);
+}
+
+.hero-light-beams {
+  inset: -2% -24% -20% -1%;
+  transform-origin: top left;
+  background: conic-gradient(from 108deg at 0 0,
+    transparent 0deg,
+    rgba(255, 234, 189, .02) 9deg,
+    rgba(255, 242, 210, .14) 15deg,
+    rgba(255, 234, 189, .025) 21deg,
+    transparent 25deg,
+    rgba(255, 237, 194, .035) 30deg,
+    rgba(255, 244, 221, .18) 34deg,
+    rgba(255, 234, 189, .02) 39deg,
+    transparent 43deg,
+    rgba(255, 237, 200, .1) 48deg,
+    transparent 56deg);
+  filter: blur(8px);
+  animation: heroStudioLight 9s ease-in-out infinite alternate;
+}
+
+.hero h1.value-heading,
+.hero h1.value-heading em {
+  font-weight: 400 !important;
+}
+
+.hero h1.value-heading {
+  /* Las sombras avanzan hacia abajo y a la derecha, opuestas al foco. */
+  filter: drop-shadow(2px 3px 1px rgba(0, 0, 0, .85))
+          drop-shadow(7px 10px 4px rgba(0, 0, 0, .65))
+          drop-shadow(15px 22px 12px rgba(0, 0, 0, .38));
+}
+
+.hero .hero-title-line {
+  color: #f5eddb;
+  -webkit-text-stroke: .25px rgba(255, 243, 210, .35);
+}
+
+.hero h1.value-heading .hero-title-accent {
+  color: #ebc987;
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hero .hero-title-line {
+    background: linear-gradient(120deg, #ae9c7f 0%, #eee4cd 18%, #fffdf4 30%, #fff 34%, #e5d3b0 40%, #c1ad89 54%, #f5ecd9 72%, #fffdf5 88%, #beaa89 100%);
+    background-size: 240% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroMetalShine 9s ease-in-out infinite alternate;
+  }
+
+  .hero h1.value-heading .hero-title-accent {
+    background-image: linear-gradient(120deg, #a97c3e 0%, #e4be77 18%, #fff1c5 30%, #fff9e7 34%, #e8c781 40%, #b68a47 54%, #f1d79c 72%, #fff2cc 88%, #c99c56 100%);
+  }
+}
+
+.hero .hero-light-beams,
+.hero .hero-title-line {
+  animation-play-state: paused;
+}
+
+.hero.hero-light-active .hero-light-beams,
+.hero.hero-light-active .hero-title-line {
+  animation-play-state: running;
+}
+
+@keyframes heroStudioLight {
+  from { transform: rotate(-4deg); opacity: .6; }
+  to { transform: rotate(5deg); opacity: 1; }
+}
+
+@keyframes heroMetalShine {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@media (max-width: 760px) {
+  /* Reserva espacio entre la cotización y el enlace para explorar la flota. */
+  .hero { padding-bottom: 132px; }
+  .hero .scroll-prompt { bottom: 32px; }
+  .hero > .hero-lighting { width: 100%; }
+  .hero-light-source { opacity: .65; }
+  .hero-light-beams { opacity: .7; }
+  .hero h1.value-heading {
+    filter: drop-shadow(2px 3px 1px rgba(0, 0, 0, .85))
+            drop-shadow(5px 8px 5px rgba(0, 0, 0, .65));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-light-beams,
+  .hero .hero-title-line {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .hero > .hero-lighting { display: none; }
+  .hero .hero-title-line {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    -webkit-text-stroke: 0;
+  }
+  .hero h1.value-heading { filter: none; }
+}
+
+/* Título ligero como “Elegancia”: luz más tenue y ambiente más sombreado. */
+.hero h1.value-heading,
+.hero h1.value-heading em {
+  font-weight: 300 !important;
+}
+
+.hero .hero-title-line {
+  -webkit-text-stroke: 0;
+}
+
+.hero > .hero-lighting {
+  opacity: .6;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: rgba(1, 5, 10, .16);
+  pointer-events: none;
+}
+
+/* Iluminación azul noche, en armonía con la portada y el resto del sitio. */
+.hero-light-source {
+  background: radial-gradient(ellipse at 0 0, rgba(182, 220, 255, .85), rgba(94, 163, 236, .28) 11%, rgba(48, 108, 183, .07) 38%, transparent 65%);
+}
+
+.hero-light-beams {
+  background: conic-gradient(from 108deg at 0 0,
+    transparent 0deg,
+    rgba(107, 175, 243, .02) 9deg,
+    rgba(168, 214, 255, .14) 15deg,
+    rgba(107, 175, 243, .025) 21deg,
+    transparent 25deg,
+    rgba(122, 186, 248, .035) 30deg,
+    rgba(185, 225, 255, .18) 34deg,
+    rgba(107, 175, 243, .02) 39deg,
+    transparent 43deg,
+    rgba(142, 197, 252, .1) 48deg,
+    transparent 56deg);
+}
+
+/* Un haz azul recorre el título desde el mismo foco superior izquierdo. */
+.hero-light-sweep {
+  position: absolute;
+  inset: -2% -30% -28% -1%;
+  pointer-events: none;
+  transform-origin: top left;
+  transform: rotate(-11deg);
+  opacity: .28;
+  background: conic-gradient(from 126deg at 0 0,
+    transparent 0deg,
+    rgba(90, 162, 242, .025) 6deg,
+    rgba(139, 199, 255, .22) 11deg,
+    rgba(205, 233, 255, .38) 14deg,
+    rgba(126, 188, 252, .12) 18deg,
+    transparent 23deg);
+  filter: blur(5px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero .hero-light-sweep {
+    animation: heroTextLightSweep 7s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+
+  .hero.hero-light-active .hero-light-sweep {
+    animation-play-state: running;
+  }
+
+  .hero .hero-title-line {
+    animation-name: heroTextReflection;
+    animation-duration: 7s;
+    animation-direction: normal;
+  }
+}
+
+@keyframes heroTextLightSweep {
+  0%, 100% { transform: rotate(-11deg); opacity: .28; }
+  25% { opacity: .64; }
+  50% { transform: rotate(11deg); opacity: .36; }
+  75% { opacity: .64; }
+}
+
+@keyframes heroTextReflection {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Los párrafos de inicio y nosotros comparten el mismo tratamiento tipográfico. */
+.hero .hero-text,
+.statement-panel .statement-grid > div > p {
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: normal;
+  color: rgba(238, 242, 245, .78);
+}

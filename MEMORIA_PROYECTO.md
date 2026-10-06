@@ -10,10 +10,10 @@ Revisar siempre el árbol actual antes de asumir que sigue igual.
 - Rama: `main`.
 - Remoto: `origin` → `git@github.com:MuscleNeerd/Malavar-Mx.git`.
 - Repositorio: https://github.com/MuscleNeerd/Malavar-Mx.
-- Commit base: `193095e` — «Añade metadatos SEO y favicon de Malavar Mx».
+- Commit base: `e16f9b7` — «Guarda el contexto del proyecto y el prompt de continuación».
 - Mensaje del commit que contiene este registro:
-  **«Guarda el contexto del proyecto y el prompt de continuación»**.
-- Alcance autorizado: crear un commit local; no se solicitó push ni despliegue.
+  **«Mejora la portada con iluminación interactiva y tipografía refinada»**.
+- Alcance autorizado: crear el commit local solicitado; no se solicitó push ni despliegue.
 - Para obtener el hash del registro: `git log -1 --format='%h %s' -- MEMORIA_PROYECTO.md`.
 
 ## Estado funcional y técnico
@@ -36,8 +36,9 @@ cinematográfico, acentos dorados, videos y galerías de imágenes.
 - CSS local en orden: `styles.css`, `experience.css`, `intro-override.css`,
   `clients-gallery.css`, `reference-style.css`, `clients-swiper.css`. La cascada
   es deliberada; consultar `CLAUDE.md` antes de modificar estilos.
-- Versiones actuales en HTML: `reference-style.css?v=20260903-6` y
-  `clients-swiper.css?v=20260903-6`. Incrementar `?v=` al editar esos archivos.
+- Versiones actuales en HTML: `reference-style.css?v=20261005-7`,
+  `clients-swiper.css?v=20260903-6` y `script.js?v=20261005-3`. Incrementar `?v=`
+  al editar CSS o JavaScript con parámetros de caché en HTML.
 - Las galerías de nosotros, Hiace, SUVs y Van usan crossfade CSS: al cambiar el
   número de fotos, ajustar retrasos, duración y porcentajes de keyframes juntos.
 - Google Fonts y Font Awesome 7.3.1 también se cargan desde CDN.
@@ -50,26 +51,32 @@ cinematográfico, acentos dorados, videos y galerías de imágenes.
 
 ## Cambios incluidos en este punto
 
-- `AGENTS.md`: lectura de esta memoria al iniciar y regla para actualizar estado
-  y prompt de continuación antes de cada commit solicitado.
-- `MEMORIA_PROYECTO.md`: estado actual, decisiones, verificaciones y prompt.
-- `CLAUDE.md`: referencia al flujo de memoria y correcciones sobre Git,
-  dependencias CDN, idioma, versión CSS y comportamiento del menú móvil.
-- `index.html`: se conserva e incluye el cambio ya presente al iniciar esta
-  sesión: título de pestaña de «Renta de Camionetas de Lujo en México | Malavar
-  Mx» a «MalavarMx». Los títulos Open Graph/Twitter mantienen su texto existente.
-- No se modificaron estilos; no corresponde incrementar su cache-buster.
+- `index.html`: añade el lienzo de luces sobre la portada de las tres camionetas
+  y capas visuales para el haz del título. El título sigue siendo texto accesible,
+  separado en líneas para aplicar reflejos metálicos animados. El párrafo de
+  apertura adopta el mismo tratamiento tipográfico que «En Malavar Mx creemos…».
+- `reference-style.css`: quita el grano del sitio y aclara la fotografía de las
+  tres camionetas con más brillo, contraste y saturación. Añade faros que siguen
+  el cursor, adaptados al recorte de `object-fit: cover` y desactivados en
+  pantallas táctiles o cuando se reduce el movimiento. Añade iluminación azul
+  animada desde arriba a la izquierda, reflejos sincronizados en el título y
+  sombras hacia abajo a la derecha. Los efectos del hero se pausan cuando no está
+  visible o la pestaña deja de estar activa. Los párrafos de inicio y Nosotros
+  comparten DM Sans, 15 px, peso 400, interlineado 1.8 y el mismo color.
+- `script.js`: controla la posición del cursor y los faros de la portada, y pausa
+  los efectos del hero cuando no está visible o la pestaña está inactiva.
+- Se conserva el título de pestaña «MalavarMx»; los metadatos sociales mantienen
+  su título descriptivo.
 
 ## Verificación y límites
 
-- Referencias locales de `src`, `href` y `poster` en HTML: 53 rutas únicas,
-  todas existentes; anclas internas con destino existente.
-- `site.webmanifest`: JSON válido e iconos existentes.
-- `sitemap.xml`: XML válido.
-- `node --check script.js`: correcto.
+- Se revisó el efecto visual en Chrome de escritorio y a 400 px de ancho CSS;
+  el encabezado se mantiene dentro del viewport y hay separación entre el botón
+  de cotización y «Explorar flota» en móvil.
+- La consola del navegador no presentó errores al revisar los cambios visuales.
 - `git diff --check`: sin errores antes del commit.
-- No hay suite automatizada en el proyecto. Este punto no incluye una revisión
-  visual en navegador ni una comprobación del dominio publicado o de los CDN.
+- No hay suite automatizada en el proyecto. No se verificaron el dominio
+  publicado ni los CDN.
 - La presencia de URLs de producción en los metadatos no confirma un despliegue.
 
 ## Archivos fuera del commit y pendientes
@@ -83,8 +90,9 @@ referenciados por el sitio, que se conservaron sin añadir ni borrar:
 `output/` y `tmp/` están en `.gitignore` a propósito: entregables de ImageGen y
 scratch. Un asset se incorpora al repositorio cuando se copia a `assets/`.
 
-No hay una nueva modificación funcional definida. La siguiente tarea depende de
-la indicación del usuario. No hacer push sin autorización explícita.
+Las modificaciones de portada indicadas hasta este punto están incluidas en este
+checkpoint. La siguiente tarea funcional depende de la indicación del usuario.
+No hacer push sin autorización explícita.
 
 ## Cómo ejecutar en local
 
@@ -110,12 +118,13 @@ No requiere compilación; se sirve con python3 -m http.server 8000.
 Respeta el orden de CSS, las reglas de crossfade y el carrusel de dos filas.
 Incrementa el ?v= de index.html si editas reference-style.css o clients-swiper.css.
 
-El último punto de guardado añadió memoria persistente y el procedimiento de
-continuación; también incluyó el título de pestaña MalavarMx que ya estaba
-editado. Se verificaron rutas y anclas locales, manifest, sitemap y sintaxis JS.
-No se hizo revisión visual ni se verificó el despliegue. Dos imágenes de la raíz
-quedaron sin seguimiento, identificadas en la memoria: consérvalas sin añadirlas
-automáticamente. output/ y tmp/ son entregables y scratch ignorados por Git.
+El último commit añadió una portada más clara sin grano, faros interactivos que
+siguen el cursor y una luz azul animada sobre el título «El viaje empieza antes
+de llegar». El párrafo de inicio comparte ahora la tipografía del párrafo de
+Nosotros. Se revisó la vista de escritorio y la adaptación a móvil; no se verificó
+el despliegue. Dos imágenes sueltas de la raíz quedaron fuera y se identifican en
+esta memoria: no añadirlas automáticamente. `output/` y `tmp/` son entregables y
+scratch ignorados por Git.
 
 Cada vez que te pida un commit, actualiza el estado y este prompt en
 MEMORIA_PROYECTO.md e inclúyelos en el mismo commit. Mi petición explícita de

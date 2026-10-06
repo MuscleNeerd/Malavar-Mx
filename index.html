@@ -75,7 +75,7 @@
     <link rel="stylesheet" href="experience.css" />
     <link rel="stylesheet" href="intro-override.css" />
     <link rel="stylesheet" href="clients-gallery.css" />
-    <link rel="stylesheet" href="reference-style.css?v=20260903-6" />
+    <link rel="stylesheet" href="reference-style.css?v=20261005-7" />
     <link rel="stylesheet" href="clients-swiper.css?v=20260903-6" />
   </head>
   <body>
@@ -97,12 +97,14 @@
     <main>
       <section class="fleet-opening" aria-label="Flota Malavar Mx">
         <img src="assets/nueva-portada.png" alt="Flota de camionetas Malavar Mx" />
+        <canvas class="fleet-lights" aria-hidden="true"></canvas>
         <div><p>Malavar Mx</p><span>Movilidad que deja huella</span></div>
       </section>
       <section class="hero" id="inicio">
+        <div class="hero-lighting" aria-hidden="true"><span class="hero-light-source"></span><span class="hero-light-beams"></span><span class="hero-light-sweep"></span></div>
         <div class="hero-copy reveal">
           <p class="eyebrow">Traslados privados · Morelos & México</p>
-          <h1 class="value-heading">El viaje<br /><em>empieza antes</em><br />de llegar.</h1>
+          <h1 class="value-heading"><span class="hero-title-line">El viaje</span><br /><em class="hero-title-line hero-title-accent">empieza antes</em><br /><span class="hero-title-line">de llegar.</span></h1>
           <p class="hero-text">Camionetas de lujo y atención impecable para cada momento que merece una llegada extraordinaria.</p>
           <a class="button" href="#contacto">Solicitar cotización <i class="fa-solid fa-arrow-right ui-arrow ui-arrow--diagonal" aria-hidden="true"></i></a>
         </div>
@@ -261,6 +263,6 @@
       </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11.2.6/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=20261005-3"></script>
   </body>
 </html>
