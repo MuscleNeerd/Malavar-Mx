@@ -2217,3 +2217,197 @@ body::before {
   letter-spacing: normal;
   color: rgba(238, 242, 245, .78);
 }
+
+/* Tres reflectores azules iluminan la sección desde el borde superior. */
+.statement-lighting {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.statement-panel > .eyebrow,
+.statement-panel > .statement-grid {
+  position: relative;
+  z-index: 4;
+}
+
+.statement-light {
+  position: absolute;
+  top: -3%;
+  width: 42%;
+  height: 89%;
+  transform: translateX(-50%) scaleX(.82);
+  transform-origin: 50% 0;
+  opacity: .36;
+  background:
+    radial-gradient(ellipse at 50% 0, rgba(188, 224, 255, .38) 0, rgba(113, 177, 239, .2) 14%, rgba(57, 119, 193, .08) 42%, transparent 74%),
+    linear-gradient(180deg, rgba(146, 200, 251, .14), rgba(86, 151, 219, .055) 50%, transparent 94%);
+  filter: blur(21px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .75) 49%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .75) 49%, transparent 100%);
+}
+
+.statement-light--left { left: 16%; }
+.statement-light--center { left: 50%; }
+.statement-light--right { left: 84%; }
+
+.fleet-heading h2.value-heading {
+  filter: drop-shadow(0 0 9px rgba(120, 185, 247, .32))
+          drop-shadow(1px 3px 2px rgba(0, 0, 0, .9))
+          drop-shadow(5px 9px 8px rgba(0, 0, 0, .65));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .statement-light {
+    animation: statementLightPulse 7s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  .statement-light--center { animation-delay: -2.3s; }
+  .statement-light--right { animation-delay: -4.6s; }
+
+  .fleet-lights-active .statement-light {
+    animation-play-state: running;
+  }
+}
+
+@keyframes statementLightPulse {
+  from { opacity: .23; transform: translateX(-50%) scaleX(.76); }
+  to { opacity: .58; transform: translateX(-50%) scaleX(1.08); }
+}
+
+@media (max-width: 760px) {
+  .statement-light { width: 70%; height: 76%; filter: blur(24px); }
+  .statement-light--left { left: 8%; }
+  .statement-light--center { left: 50%; }
+  .statement-light--right { left: 92%; }
+  .fleet-heading h2.value-heading {
+    filter: drop-shadow(0 0 8px rgba(120, 185, 247, .28))
+            drop-shadow(1px 3px 2px rgba(0, 0, 0, .9))
+            drop-shadow(4px 7px 6px rgba(0, 0, 0, .62));
+  }
+}
+
+@media (forced-colors: active) {
+  .statement-lighting { display: none; }
+  .fleet-heading h2.value-heading { filter: none; }
+}
+
+/* Haces cónicos descendentes, más intensos y anclados a las tres posiciones. */
+.statement-light {
+  top: 0;
+  width: 68%;
+  height: 100svh;
+  transform: translateX(-50%) scaleX(.9);
+  opacity: .72;
+  mix-blend-mode: screen;
+  background:
+    conic-gradient(from 150deg at 50% 0%,
+      transparent 0deg,
+      rgba(82, 164, 255, .06) 13deg,
+      rgba(104, 181, 255, .26) 21deg,
+      rgba(177, 221, 255, .42) 28deg,
+      rgba(112, 182, 250, .23) 35deg,
+      rgba(65, 137, 218, .06) 44deg,
+      transparent 53deg,
+      transparent 360deg),
+    radial-gradient(ellipse at 50% 0%, rgba(193, 230, 255, .68), rgba(91, 166, 245, .34) 14%, rgba(62, 133, 217, .12) 38%, transparent 73%);
+  filter: blur(20px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .88) 53%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .88) 53%, transparent 100%);
+}
+
+.statement-panel { z-index: auto; }
+
+.statement-light--left { left: 0; }
+.statement-light--center { left: 50%; }
+.statement-light--right { left: 100%; }
+
+@keyframes statementLightPulse {
+  0%, 100% { opacity: .52; transform: translateX(-50%) scaleX(.76); }
+  50% { opacity: .98; transform: translateX(-50%) scaleX(1.12); }
+}
+
+@media (max-width: 760px) {
+  .statement-light {
+    width: 112%;
+    height: 100svh;
+    filter: blur(22px);
+  }
+
+  .statement-light--left { left: 0; }
+  .statement-light--center { left: 50%; }
+  .statement-light--right { left: 100%; }
+}
+
+/* Rayos diagonales desde las dos esquinas superiores del encabezado de flota. */
+.fleet-heading {
+  position: relative;
+  isolation: isolate;
+}
+.fleet-heading .statement-lighting { z-index: 0; }
+.fleet-heading > .eyebrow,
+.fleet-heading > h2 { position: relative; z-index: 2; }
+
+.statement-light {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .42;
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .88) 58%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .88) 58%, transparent 100%);
+}
+
+.statement-light--left {
+  left: 0;
+  transform-origin: 0 0;
+  background:
+    conic-gradient(from 88deg at 0% 0%, transparent 0deg, rgba(150, 205, 255, .1) 13deg, rgba(174, 216, 255, .36) 24deg, rgba(125, 184, 243, .2) 34deg, rgba(100, 166, 234, .06) 48deg, transparent 64deg, transparent 360deg),
+    radial-gradient(ellipse 32% 46% at 0% 0%, rgba(210, 234, 255, .58), rgba(135, 191, 246, .2) 42%, transparent 100%);
+}
+
+.statement-light--right {
+  right: 0;
+  left: auto;
+  transform-origin: 100% 0;
+  background:
+    conic-gradient(from 208deg at 100% 0%, transparent 0deg, rgba(150, 205, 255, .1) 13deg, rgba(174, 216, 255, .36) 24deg, rgba(125, 184, 243, .2) 34deg, rgba(100, 166, 234, .06) 48deg, transparent 64deg, transparent 360deg),
+    radial-gradient(ellipse 32% 46% at 100% 0%, rgba(210, 234, 255, .58), rgba(135, 191, 246, .2) 42%, transparent 100%);
+}
+
+.fleet-heading h2.value-heading {
+  filter: drop-shadow(0 0 12px rgba(120, 185, 247, .4))
+          drop-shadow(0 8px 5px rgba(0, 0, 0, .92))
+          drop-shadow(-3px 3px 4px rgba(0, 0, 0, .62))
+          drop-shadow(3px 3px 4px rgba(0, 0, 0, .62));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .statement-light {
+    animation: statementCornerBeam 8s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+  .statement-light--right { animation-delay: -4s; }
+  .fleet-lights-active .statement-light { animation-play-state: running; }
+}
+
+@keyframes statementCornerBeam {
+  0% { opacity: .285; transform: rotate(-1deg) scale(.96); }
+  50% { opacity: .585; }
+  100% { opacity: .375; transform: rotate(2deg) scale(1.035); }
+}
+
+@media (max-width: 760px) {
+  .fleet-heading h2.value-heading {
+    filter: drop-shadow(0 0 9px rgba(120, 185, 247, .34))
+            drop-shadow(0 6px 4px rgba(0, 0, 0, .92))
+            drop-shadow(-2px 2px 3px rgba(0, 0, 0, .62))
+            drop-shadow(2px 2px 3px rgba(0, 0, 0, .62));
+  }
+}

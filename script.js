@@ -304,3 +304,16 @@ if (clientsSwiperEl && typeof Swiper !== 'undefined') {
   }).observe(hero);
   document.addEventListener('visibilitychange', updateLight);
 })();
+
+/* Enciende los dos haces del encabezado de flota cuando entra en pantalla. */
+(() => {
+  const fleetHeading = document.querySelector('.fleet-heading');
+  if (!fleetHeading) return;
+  let inView = false;
+  const updateLights = () => fleetHeading.classList.toggle('fleet-lights-active', inView && !document.hidden);
+  new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    updateLights();
+  }, { threshold: .15 }).observe(fleetHeading);
+  document.addEventListener('visibilitychange', updateLights);
+})();
