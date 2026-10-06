@@ -2,11 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Read `AGENTS.md` and `MEMORIA_PROYECTO.md` at the start of a session. The latter
+stores the latest project checkpoint and continuation prompt; update it whenever
+the user requests a commit, following the workflow in `AGENTS.md`.
+
 ## What this is
 
-One-page marketing site for **Malavar Mx** (luxury executive vehicle rental, Morelos / CDMX). Plain static HTML + CSS + vanilla JS. No build step, no package manager, no dependencies, no tests, not a git repo.
+One-page marketing site for **Malavar Mx** (luxury executive vehicle rental, Morelos / CDMX). Plain static HTML + CSS + vanilla JS. No build step, no package manager, no automated test suite. External fonts, Swiper and Font Awesome load from CDNs. Git repository on branch `main`, remote `origin` → `git@github.com:MuscleNeerd/Malavar-Mx.git`.
 
-Everything user-facing is in **Spanish** (`<html lang="es">`), and so are the CSS section comments. Keep new copy and comments in Spanish.
+Everything user-facing is in **Spanish** (`<html lang="es-MX">`), and so are the CSS section comments. Keep new copy and comments in Spanish.
 
 ## Running it
 
@@ -22,11 +26,12 @@ Opening `index.html` via `file://` mostly works but breaks the `data-clean-logo`
 
 ### The CSS cascade *is* the architecture
 
-`index.html` loads six stylesheets (plus Swiper's from a CDN), and **load order is the whole design system**. Later files deliberately override earlier ones; nothing is scoped or modular.
+`index.html` loads six local stylesheets (plus Google Fonts, Swiper and Font Awesome from CDNs), and **load order is the whole design system**. Later files deliberately override earlier ones; nothing is scoped or modular.
 
 | Order | File | Role |
 |---|---|---|
 | 0 | `swiper-bundle.min.css` (jsDelivr, pinned to Swiper 11.2.6) | Base carousel styles; loaded first so every project sheet can override it. |
+| 0b | Font Awesome `all.min.css` (jsDelivr, pinned to 7.3.1) | Navigation and CTA icons, before local styles. |
 | 1 | `styles.css` | Base layout + original **light** palette (`--paper` cream, dark ink text). Minified into a single line — hard to edit; prefer overriding it. |
 | 2 | `experience.css` | Dark repaint, custom SUV cursor, intro sequence work, plus a legacy scene-navigation system that is explicitly disabled at the top of the file. |
 | 3 | `intro-override.css` | Final version of the opening logo animation (supersedes the intro rules in the two files above). |
@@ -36,7 +41,7 @@ Opening `index.html` via `file://` mostly works but breaks the `data-clean-logo`
 
 Practical consequence: **`reference-style.css` is where almost all real work happens.** It is organized as a chronological log of commented Spanish blocks, each a later refinement of an earlier one (e.g. the heading typography is redefined three separate times further down the file). Follow that convention — append a new commented block at the bottom rather than surgically editing an older rule, because an older rule you "fix" is often already overridden below.
 
-It is loaded with a cache-buster: `reference-style.css?v=20260903-3` (and `clients-swiper.css` carries the same one). **Bump that string whenever you edit either file**, otherwise browsers serve the stale copy.
+It is loaded with a cache-buster: `reference-style.css?v=20260903-6` (and `clients-swiper.css` carries the same one). **Bump that string whenever you edit either file**, otherwise browsers serve the stale copy. Check `index.html` for the current value.
 
 Mobile breakpoint is `max-width: 760px` across all files; the narrower breakpoints are one-off fixes.
 
@@ -70,7 +75,7 @@ If you renumber or reorder cards, the numbering is hand-written in the HTML; not
 Small and unbundled; five independent blocks:
 
 - `data-clean-logo` — canvas pass that knocks white backgrounds out of logo PNGs. **Currently no element in `index.html` carries this attribute**, so it is inert; keep it if reintroducing raw client logos.
-- Mobile nav toggle (`.menu-toggle` ↔ `nav.open`).
+- Mobile nav toggle (`.menu-toggle` ↔ `nav.open`), header/body state and ARIA updates; closes on backdrop, navigation link, Escape or desktop breakpoint. Escape/backdrop restore focus to the toggle.
 - Contact form — intercepts submit, builds a `mailto:` URL from the fields, and navigates to it. The `<form action="mailto:…">` is only a no-JS fallback. There is no backend.
 - `.reveal` IntersectionObserver → adds `.visible` (threshold `0.18`, unobserves after firing). Any new element that should animate in needs `class="reveal"` (add `delayed` for the staggered variant); an element that never enters the viewport stays invisible.
 - Clients carousel — initializes Swiper on `.clients-swiper`, with `loop: true` and autoplay. Each slide is a card. The grid is 2 rows everywhere, 2 columns on mobile and 3 from the `761` breakpoint up. Two hard constraints:
